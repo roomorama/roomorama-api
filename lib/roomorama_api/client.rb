@@ -1,4 +1,3 @@
-require 'oauth2'
 module RoomoramaApi
 
   class Client
