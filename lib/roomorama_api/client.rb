@@ -8,10 +8,12 @@ module RoomoramaApi
    
     attr_reader :access_token
 
-    def initialize( client_id = nil, client_secret = nil )
+    def initialize( token = nil )
+      @token = token
       @base_url = RoomoramaApi::Config.new.base_url
     end
     
+
     # configuration method returns set of credentials depends on env.
     #  
     # @returns RoomoramaApi::Config
@@ -29,13 +31,15 @@ module RoomoramaApi
     #
     # @example:
     # 
-    def establish_connection
+    def auth_token
+      # Store OAuth::AccessToken
       @access_token ||= get_access_token
     end
 
 
     def create_room
       url = create_room_url
+      @access_token.post( create_room_url )
     end
 
 
@@ -51,16 +55,15 @@ module RoomoramaApi
       raise EndpointNotImplemented unless attribute == "create_room"
       api_version = "v1.0"
       end_point = "host/rooms"
-      "https://#{@base_url}/#{api_version}/#{end_point}" 
+      "https://#{@base_url}/#{api_version}/#{end_point}.json" 
     end
 
     private
 
     def get_access_token
-      url = ""
-      headers = {} 
-      body = ""
-      RestClient.post( url, headers, body )
+      url =  "https://api.staging.roomorama.com/"
+      client = ::OAuth2::Client.new( "", "", site: url)
+      OAuth2::AccessToken.new( client, @token )
     end 
 
   end 
