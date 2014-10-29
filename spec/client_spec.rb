@@ -19,6 +19,7 @@ describe "Roomorama API" do
     end
     
     describe "#auth_token" do 
+      let(:roomorama_client){ RoomoramaApi::Client.new("fake_token_#313")  }
       it "respond to auth_token" do 
         expect( roomorama_client ).to respond_to(:auth_token)
       end
@@ -26,13 +27,16 @@ describe "Roomorama API" do
       it "return OAuth::Token class" do 
         expect( roomorama_client.auth_token ).to be_instance_of( OAuth2::AccessToken )
       end
+     
+      it "assign access_token with value of token passed to the constructor" do 
+        expect( roomorama_client.auth_token.token ).to eql( "fake_token_#313" )
+      end
     end
 
     describe "#create_room" do 
       it "responds to create_room" do 
         expect( roomorama_client ).to respond_to(:create_room)
       end
-
 
       it "recieve Status 200 for valid params" do 
         allow( roomorama_client ).to receive(:create_room).and_return( {status: 200}  )
