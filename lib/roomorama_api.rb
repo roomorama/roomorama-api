@@ -1,7 +1,7 @@
 require 'active_model'
 
-require 'roomorama_api/config'
-require 'roomorama_api/client'
+require_relative 'roomorama_api/config'
+require_relative 'roomorama_api/client'
 
 
 module RoomoramaApi

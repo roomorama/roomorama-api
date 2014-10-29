@@ -17,6 +17,17 @@ describe "Roomorama API" do
         expect( roomorama_client.configuration ).to be_instance_of( RoomoramaApi::Config )
       end
     end
+    
+    describe "#auth_token" do 
+      it "respond to auth_token" do 
+        expect( roomorama_client ).to respond_to(:auth_token)
+      end
+      
+      it "return OAuth::Token class" do 
+        expect( roomorama_client.auth_token ).to be_instance_of( OAuth2::AccessToken )
+      end
+    end
+
     describe "#create_room" do 
       it "responds to create_room" do 
         expect( roomorama_client ).to respond_to(:create_room)
@@ -34,7 +45,7 @@ describe "Roomorama API" do
     end
 
     it "builds create roomr url" do 
-      expect( roomorama_client.send(:create_room_url) ).to eql("https://api.staging.roomorama.com/v1.0/host/rooms")
+      expect( roomorama_client.send(:create_room_url) ).to eql("https://api.staging.roomorama.com/v1.0/host/rooms.json")
     end
 
     it "raises an exception when resource is not supported" do 
