@@ -1,6 +1,6 @@
 module RoomoramaApi
   class Config
-    URL = "api.staging.roomorama.com"
+    URL = "https://api.staging.roomorama.com"
     attr_reader :base_url
     attr_accessor :client_id, :client_secret, :token
 
