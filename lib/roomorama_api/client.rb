@@ -3,7 +3,7 @@ module RoomoramaApi
   class Client
     include ::ActiveModel::AttributeMethods
 
-    @@end_points = {
+    END_POINTS = {
       create_property: 'host/rooms',
       index_property: 'host/rooms'
     }
@@ -54,7 +54,7 @@ module RoomoramaApi
     def create_property(property_hash)
       auth_post(create_property_url, property_hash)
     end
-    
+
     # ToDo: return parsed response - not full object
     def index_property
       auth_token.get( index_property_url ).body
@@ -69,7 +69,7 @@ module RoomoramaApi
     #   roomorama_client.create_property_url
     #
     def attribute_url(attribute)
-      end_point = @@end_points[attribute.to_sym]
+      end_point = END_POINTS[attribute.to_sym]
       raise EndpointNotImplemented unless end_point
       "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
     end
