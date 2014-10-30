@@ -27,18 +27,18 @@ module RoomoramaApi
 
     # method which is authenticating against Roomorama API using OAuth2
     # 
-    # @returns authentication_token 
+    # @returns OAuth::AccessToken
     #
     # @example:
-    # 
+    #   auth_token.post("/v1.0/me.json")
+    #   auth_token.post(create_room_url)
+    #
     def auth_token
-      # Store OAuth::AccessToken
       @access_token ||= get_access_token
     end
 
 
     def create_room
-      url = create_room_url
       @access_token.post( create_room_url )
     end
 
@@ -61,8 +61,7 @@ module RoomoramaApi
     private
 
     def get_access_token
-      url =  "https://api.staging.roomorama.com/"
-      client = ::OAuth2::Client.new( "", "", site: url)
+      client = ::OAuth2::Client.new( "", "", site: @base_url )
       OAuth2::AccessToken.new( client, @token )
     end 
 
