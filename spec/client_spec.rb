@@ -81,7 +81,7 @@ describe "Roomorama API" do
       expect( roomorama_client ).to respond_to(:create_property_url)
     end
 
-    it "builds create room url" do
+    it "builds create property url" do
       expect( roomorama_client.send(:create_property_url) ).to eql("https://api.staging.roomorama.com/v1.0/host/rooms.json")
     end
 

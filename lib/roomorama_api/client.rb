@@ -7,8 +7,6 @@ module RoomoramaApi
       create_property: 'host/rooms'
     }
 
-    @@api_version = 'v1.0'
-
     attribute_method_suffix :_url
 
     define_attribute_methods [:create_property, :update_property]
@@ -17,11 +15,8 @@ module RoomoramaApi
     attr_accessor :config
 
     def initialize( config = nil )
-      @config = config
-      @token  = config.token rescue nil
-      @base_url = RoomoramaApi::Config.new.base_url
+      @config = config || RoomoramaApi::Config.new
     end
-
 
     # configuration method returns set of credentials depends on env.
     #
@@ -70,14 +65,12 @@ module RoomoramaApi
     def attribute_url(attribute)
       end_point = @@end_points[attribute.to_sym]
       raise EndpointNotImplemented unless end_point
-      "#{@base_url}/#{@@api_version}/#{end_point}.json"
+      "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
     end
 
-
-
     def get_access_token
-      client = ::OAuth2::Client.new("", "", site: @base_url, raise_errors: false)
-      OAuth2::AccessToken.new(client, @token)
+      client = ::OAuth2::Client.new("", "", site: @config.base_url, raise_errors: false)
+      OAuth2::AccessToken.new(client, @config.token)
     end
 
     [:get, :post, :put, :delete].each do |http_method|
