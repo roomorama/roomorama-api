@@ -6,10 +6,12 @@ module RoomoramaApi
     attribute_method_suffix :_url
     define_attribute_methods [:create_room, :update_room, :delete_room]
    
-    attr_reader :access_token
+    attr_reader :access_token, :token
+    attr_accessor :config
 
-    def initialize( token = nil )
-      @token = token
+    def initialize( config = nil )
+      @config = config
+      @token  = config.token rescue nil
       @base_url = RoomoramaApi::Config.new.base_url
     end
     
@@ -20,10 +22,19 @@ module RoomoramaApi
     # 
     # @example:
     #   RoomoramaApi::Config
-    def configuration
-      RoomoramaApi::Config.new
-    end
+    class << self
 
+      def configuration
+        if block_given?
+          config = RoomoramaApi::Config.new
+          yield(config)
+          client = self.new( config )
+        end
+      end
+
+      alias_method :setup, :configuration
+    end
+   
 
     # method which is authenticating against Roomorama API using OAuth2
     # 
@@ -42,6 +53,8 @@ module RoomoramaApi
       @access_token.post( create_room_url )
     end
 
+   
+    private
 
     # method which builds endpoint's url
     # method can be used for builing Matrix of resource x action  x Version of API
@@ -58,7 +71,7 @@ module RoomoramaApi
       "https://#{@base_url}/#{api_version}/#{end_point}.json" 
     end
 
-    private
+
 
     def get_access_token
       client = ::OAuth2::Client.new( "", "", site: @base_url )
