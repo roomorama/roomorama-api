@@ -8,18 +8,51 @@ describe "Roomorama API" do
       expect( roomorama_client ).to be_instance_of( RoomoramaApi::Client )
     end
 
-    describe "#configuration" do  
-      it "responds to configuration" do 
-        expect( roomorama_client ).to respond_to(:configuration)
-      end  
-   
-      it "returns Config object" do 
-        expect( roomorama_client.configuration ).to be_instance_of( RoomoramaApi::Config )
-      end
+    describe "Class methods" do 
+      subject { RoomoramaApi::Client }
+      it { is_expected.to respond_to(:configuration) }
+      it { is_expected.to respond_to(:setup) }
     end
     
+    describe "Public interface" do 
+      subject { RoomoramaApi::Client.new }
+      it { is_expected.to respond_to(:auth_token) }
+      it { is_expected.to respond_to(:create_room) }
+      it { is_expected.to respond_to(:create_room_url) }
+    end
+
+    describe ".configuration" do  
+      let(:client){ RoomoramaApi::Client }
+      it "responds to configuration" do 
+        expect( client ).to respond_to(:configuration)
+      end  
+    end
+    
+    describe ".setup" do 
+      let(:client_klass){ RoomoramaApi::Client }
+      it "alias to configuration method" do 
+        expect( client_klass ).to respond_to(:configuration)
+        expect( client_klass.method(:setup).original_name ).to eql(:configuration)
+      end
+ 
+      let(:client) do
+        client_klass.setup do |conf| 
+          conf.token = "token" 
+          conf.client_id = 7
+          conf.client_secret = "secret" 
+        end
+      end
+
+      it "propertly setting up an Client object" do 
+        expect(client).to be_instance_of( client_klass )
+        expect(client.config.token).to eql( "token" )
+        expect(client.config.client_id).to eql( 7 )
+        expect(client.config.client_secret).to eql( "secret" )
+      end 
+    end
+
     describe "#auth_token" do 
-      let(:roomorama_client){ RoomoramaApi::Client.new("fake_token_#313")  }
+      let(:roomorama_client){ RoomoramaApi::Client.setup{|c| c.token = "fake_token_#313" }  }
       it "respond to auth_token" do 
         expect( roomorama_client ).to respond_to(:auth_token)
       end
