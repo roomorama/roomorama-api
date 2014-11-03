@@ -5,11 +5,11 @@ module RoomoramaApi
 
     END_POINTS = {
       create_property: 'host/rooms',
-      index_property: 'host/rooms'
+      index_property: 'host/rooms',
+      update_property: 'host/rooms/%{room_id}'
     }
 
     attribute_method_suffix :_url
-
     define_attribute_methods [:create_property, :update_property, :index_property]
 
     attr_reader :access_token, :token
@@ -60,6 +60,10 @@ module RoomoramaApi
       auth_token.get( index_property_url ).body
     end
 
+    def update_property(property_hash)
+      auth_put(update_property_url, property_hash)
+    end
+
     # method which builds endpoint's url
     # method can be used for builing Matrix of resource x action  x Version of API
     #
@@ -68,10 +72,10 @@ module RoomoramaApi
     # @example:
     #   roomorama_client.create_property_url
     #
-    def attribute_url(attribute)
+    def attribute_url(attribute, hash = nil)
       end_point = END_POINTS[attribute.to_sym]
       raise EndpointNotImplemented unless end_point
-      "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
+      "#{@config.base_url}/#{@config.api_version}/#{end_point}.json" % hash
     end
 
     def get_access_token
@@ -80,12 +84,12 @@ module RoomoramaApi
     end
 
     [:get, :post, :put, :delete].each do |http_method|
-      define_method("auth_#{http_method}") { |url, attrs = {}| auth_request(http_method, url, attrs) }
+      define_method("auth_#{http_method}") { |url, attrs| auth_request(http_method, url, attrs) }
       define_method(http_method) { |url| raise EndpointNotImplemented }
     end
 
-    def auth_request(method, url, attrs)
-      raw_response = auth_token.send method, url, attrs
+    def auth_request(method, url, attrs = {})
+      raw_response = auth_token.send method, url, params: attrs
       prepare_response(raw_response)
     end
 
@@ -93,7 +97,10 @@ module RoomoramaApi
       case response.status
       when 200..206 then parse_response(response)
       when 401 then raise UnauthorizedRequest
-      when 422 then raise InvalidRequest, parse_response(response)['errors']
+      when 422
+        error_response = parse_response(response)
+        error_response = (error_response && error_response.has_key?(:errors)) ? error_response[:errors] : 'Received empty response from API'
+        raise InvalidRequest, error_response
       when 500..505 then raise ApiNotResponding
       else
         raise UnexpectedResponse
@@ -101,7 +108,9 @@ module RoomoramaApi
     end
 
     def parse_response(response)
-      JSON.parse(response.response.body)['response']
+      if response.respond_to?(:response) and response.response.respond_to?(:body)
+        JSON.parse(response.response.body)['response']
+      end
     end
 
   end

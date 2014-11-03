@@ -93,8 +93,36 @@ describe "Roomorama API" do
       expect( roomorama_client.send(:create_property_url) ).to eql("https://api.staging.roomorama.com/v1.0/host/rooms.json")
     end
 
-    it "raises an exception when resource is not supported" do
-      expect{ roomorama_client.update_property_url }.to raise_exception(RoomoramaApi::EndpointNotImplemented)
+    it "builds update property url" do
+      expect( roomorama_client.send(:update_property_url, {room_id: 1}) ).to eql("https://api.staging.roomorama.com/v1.0/host/rooms/1.json")
+    end
+
+    describe "#prepare_response" do
+      let(:response) { double("response") }
+
+      it "responds to prepare_response" do
+        expect( roomorama_client ).to respond_to(:prepare_response)
+      end
+
+      it "raises UnauthorizedRequest for a 401 response" do
+        allow(response).to receive(:status).and_return(401)
+        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::UnauthorizedRequest)
+      end
+
+      it "raises InvalidRequest for a 422 response" do
+        allow(response).to receive(:status).and_return(422)
+        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::InvalidRequest)
+      end
+
+      it "raises ApiNotResponding for a 5XX response" do
+        allow(response).to receive(:status).and_return(500)
+        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::ApiNotResponding)
+      end
+
+      it "raises UnexpectedResponse for not handled error" do
+        allow(response).to receive(:status).and_return(301)
+        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::UnexpectedResponse)
+      end
     end
 
   end
