@@ -1,16 +1,17 @@
 ### Roomorama API
- 
+
 Wrapper which allows in easy way to make a http call to Roomorama API
 
 ## RoomoramaApi::Client
 
 #### Setup
 
-In order to pass credentials about partner's user we can use 
+
+In order to pass credentials about partner's user we can use
  #setup method
 
 ```ruby
-  RoomoramaApi::Client.setup do |config|
+  client = RoomoramaApi::Client.setup do |config|
     config.client_id     = 7
     config.client_secret = 'fake_client_secret'
     config.token         = 'fake_authentication_token'
