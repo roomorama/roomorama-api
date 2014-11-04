@@ -100,11 +100,11 @@ module RoomoramaApi
 
     def prepare_response(response)
       case response.status
-      when 200..206 then parse_response(response)
+      when 200..206 then parse_successful_response(response)
       when 401 then raise UnauthorizedRequest
       when 422
-        error_response = parse_response(response)
-        error_response = (error_response && error_response.has_key?(:errors)) ? error_response[:errors] : 'Received empty response from API'
+        error_response = parse_invalid_response(response)
+        error_response = error_response.presence || 'Received empty response from API'
         raise InvalidRequest, error_response
       when 500..505 then raise ApiNotResponding
       else
@@ -112,10 +112,18 @@ module RoomoramaApi
       end
     end
 
+    def parse_successful_response(response)
+      json_response = parse_response(response)
+      json_response['result'] if json_response
+    end
+
+    def parse_invalid_response(response)
+      json_response = parse_response(response)
+      json_response['response']['errors'] if json_response && json_response['response'] && json_response['response']['errors']
+    end
+
     def parse_response(response)
-      if response.respond_to?(:response) && response.response.respond_to?(:body)
-        JSON.parse(response.response.body)['result']
-      end
+      JSON.parse(response.response.body) if response.respond_to?(:response) && response.response.respond_to?(:body)
     end
 
   end
