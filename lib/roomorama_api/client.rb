@@ -3,14 +3,13 @@ module RoomoramaApi
   class Client
     include ::ActiveModel::AttributeMethods
 
-    @@end_points = {
-      create_property: 'host/rooms',
-      index_property: 'host/rooms'
+    END_POINTS = {
+      host_properties: 'host/rooms',
+      host_property: 'host/rooms/%{id}'
     }
 
     attribute_method_suffix :_url
-
-    define_attribute_methods [:create_property, :update_property, :index_property]
+    define_attribute_methods [:host_properties, :host_property]
 
     attr_reader :access_token, :token
     attr_accessor :config
@@ -51,13 +50,22 @@ module RoomoramaApi
       @access_token ||= get_access_token
     end
 
-    def create_property(property_hash)
-      auth_post(create_property_url, property_hash)
+    def get_properties
+      auth_get(host_properties_url)
     end
-    
-    # ToDo: return parsed response - not full object
-    def index_property
-      auth_token.get( index_property_url ).body
+
+    def get_property(property_hash)
+      property_url = host_property_url(property_hash)
+      auth_get(property_url)
+    end
+
+    def create_property(property_hash)
+      auth_post(host_properties_url, property_hash)
+    end
+
+    def update_property(property_hash)
+      property_url = host_property_url(property_hash)
+      auth_put(property_url, property_hash)
     end
 
     # method which builds endpoint's url
@@ -68,10 +76,11 @@ module RoomoramaApi
     # @example:
     #   roomorama_client.create_property_url
     #
-    def attribute_url(attribute)
-      end_point = @@end_points[attribute.to_sym]
+    def attribute_url(attribute, hash = nil)
+      end_point = END_POINTS[attribute.to_sym]
       raise EndpointNotImplemented unless end_point
-      "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
+      url = "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
+      hash ? (url % hash) : url
     end
 
     def get_access_token
@@ -85,23 +94,36 @@ module RoomoramaApi
     end
 
     def auth_request(method, url, attrs)
-      raw_response = auth_token.send method, url, attrs
+      raw_response = auth_token.send method, url, params: attrs
       prepare_response(raw_response)
     end
 
     def prepare_response(response)
       case response.status
-      when 200..206 then parse_response(response)
+      when 200..206 then parse_successful_response(response)
       when 401 then raise UnauthorizedRequest
-      when 422 then raise InvalidRequest, parse_response(response)['errors']
+      when 422
+        error_response = parse_invalid_response(response)
+        error_response = error_response.presence || 'Received empty response from API'
+        raise InvalidRequest, error_response
       when 500..505 then raise ApiNotResponding
       else
         raise UnexpectedResponse
       end
     end
 
+    def parse_successful_response(response)
+      json_response = parse_response(response)
+      json_response['result'] if json_response
+    end
+
+    def parse_invalid_response(response)
+      json_response = parse_response(response)
+      json_response['response']['errors'] if json_response && json_response['response'] && json_response['response']['errors']
+    end
+
     def parse_response(response)
-      JSON.parse(response.response.body)['response']
+      JSON.parse(response.response.body) if response.respond_to?(:response) && response.response.respond_to?(:body)
     end
 
   end
