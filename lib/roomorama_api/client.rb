@@ -4,13 +4,12 @@ module RoomoramaApi
     include ::ActiveModel::AttributeMethods
 
     END_POINTS = {
-      create_property: 'host/rooms',
-      index_property: 'host/rooms',
-      update_property: 'host/rooms/%{room_id}'
+      host_properties: 'host/rooms',
+      host_property: 'host/rooms/%{id}'
     }
 
     attribute_method_suffix :_url
-    define_attribute_methods [:create_property, :update_property, :index_property]
+    define_attribute_methods [:host_properties, :host_property]
 
     attr_reader :access_token, :token
     attr_accessor :config
@@ -51,17 +50,22 @@ module RoomoramaApi
       @access_token ||= get_access_token
     end
 
-    def create_property(property_hash)
-      auth_post(create_property_url, property_hash)
+    def get_properties
+      auth_get(host_properties_url)
     end
 
-    # ToDo: return parsed response - not full object
-    def index_property
-      auth_token.get( index_property_url ).body
+    def get_property(property_hash)
+      property_url = host_property_url(property_hash)
+      auth_get(property_url)
+    end
+
+    def create_property(property_hash)
+      auth_post(host_properties_url, property_hash)
     end
 
     def update_property(property_hash)
-      auth_put(update_property_url, property_hash)
+      property_url = host_property_url(property_hash)
+      auth_put(property_url, property_hash)
     end
 
     # method which builds endpoint's url
@@ -75,7 +79,8 @@ module RoomoramaApi
     def attribute_url(attribute, hash = nil)
       end_point = END_POINTS[attribute.to_sym]
       raise EndpointNotImplemented unless end_point
-      "#{@config.base_url}/#{@config.api_version}/#{end_point}.json" % hash
+      url = "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
+      hash ? (url % hash) : url
     end
 
     def get_access_token
@@ -84,11 +89,11 @@ module RoomoramaApi
     end
 
     [:get, :post, :put, :delete].each do |http_method|
-      define_method("auth_#{http_method}") { |url, attrs| auth_request(http_method, url, attrs) }
+      define_method("auth_#{http_method}") { |url, attrs = {}| auth_request(http_method, url, attrs) }
       define_method(http_method) { |url| raise EndpointNotImplemented }
     end
 
-    def auth_request(method, url, attrs = {})
+    def auth_request(method, url, attrs)
       raw_response = auth_token.send method, url, params: attrs
       prepare_response(raw_response)
     end
@@ -108,8 +113,8 @@ module RoomoramaApi
     end
 
     def parse_response(response)
-      if response.respond_to?(:response) and response.response.respond_to?(:body)
-        JSON.parse(response.response.body)['response']
+      if response.respond_to?(:response) && response.response.respond_to?(:body)
+        JSON.parse(response.response.body)['result']
       end
     end
 
