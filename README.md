@@ -6,6 +6,7 @@ Wrapper which allows in easy way to make a http call to Roomorama API
 
 #### Setup
 
+
 In order to pass credentials about partner's user we can use
  #setup method
 
@@ -25,6 +26,8 @@ Client object allows us to get OAuth::AccessToken, authenticated with passed dur
 ```ruby
   auth_token = client.auth_token
   auth_token.post("/v1.0/me.json")
-
+  
   auth.post(create_room_url)
 ```
+
+

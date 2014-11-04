@@ -4,12 +4,13 @@ module RoomoramaApi
     include ::ActiveModel::AttributeMethods
 
     @@end_points = {
-      create_property: 'host/rooms'
+      create_property: 'host/rooms',
+      index_property: 'host/rooms'
     }
 
     attribute_method_suffix :_url
 
-    define_attribute_methods [:create_property, :update_property]
+    define_attribute_methods [:create_property, :update_property, :index_property]
 
     attr_reader :access_token, :token
     attr_accessor :config
@@ -53,6 +54,11 @@ module RoomoramaApi
     def create_property(property_hash)
       auth_post(create_property_url, property_hash)
     end
+    
+    # ToDo: return parsed response - not full object
+    def index_property
+      auth_token.get( index_property_url ).body
+    end
 
     # method which builds endpoint's url
     # method can be used for builing Matrix of resource x action  x Version of API
@@ -74,12 +80,12 @@ module RoomoramaApi
     end
 
     [:get, :post, :put, :delete].each do |http_method|
-      define_method("auth_#{http_method}") { |url, attrs = nil| auth_request(http_method, url, attrs) }
+      define_method("auth_#{http_method}") { |url, attrs = {}| auth_request(http_method, url, attrs) }
       define_method(http_method) { |url| raise EndpointNotImplemented }
     end
 
     def auth_request(method, url, attrs)
-      raw_response = auth_token.send method, url
+      raw_response = auth_token.send method, url, attrs
       prepare_response(raw_response)
     end
 
@@ -101,3 +107,4 @@ module RoomoramaApi
   end
 
 end
+
