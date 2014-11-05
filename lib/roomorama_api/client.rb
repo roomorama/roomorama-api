@@ -3,13 +3,10 @@ module RoomoramaApi
   class Client
     include ::ActiveModel::AttributeMethods
 
-    END_POINTS = {
-      host_properties: 'host/rooms',
-      host_property: 'host/rooms/%{id}'
-    }
+    END_POINTS = YAML::load(File.open(File.join(File.dirname(__FILE__), 'routes.yml')))
 
     attribute_method_suffix :_url
-    define_attribute_methods [:host_properties, :host_property]
+    define_attribute_methods END_POINTS.keys
 
     attr_reader :access_token, :token
     attr_accessor :config
@@ -37,6 +34,24 @@ module RoomoramaApi
       alias_method :setup, :configuration
     end
 
+    include RoomoramaApi::Host::Properties
+
+    # method which builds endpoint's url
+    # method can be used for builing Matrix of resource x action  x Version of API
+    #
+    # @returns "https://api.staging.roomorama.com/v1.0/host/rooms"
+    #
+    # @example:
+    #   roomorama_client.create_property_url
+    #
+    def attribute_url(attribute, hash = nil)
+      end_point = END_POINTS[attribute]
+      raise EndpointNotImplemented unless end_point
+      url = "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
+      hash ? (url % hash) : url
+    end
+
+    private
 
     # method which is authenticating against Roomorama API using OAuth2
     #
@@ -48,39 +63,6 @@ module RoomoramaApi
     #
     def auth_token
       @access_token ||= get_access_token
-    end
-
-    def get_properties
-      auth_get(host_properties_url)
-    end
-
-    def get_property(property_hash)
-      property_url = host_property_url(property_hash)
-      auth_get(property_url)
-    end
-
-    def create_property(property_hash)
-      auth_post(host_properties_url, property_hash)
-    end
-
-    def update_property(property_hash)
-      property_url = host_property_url(property_hash)
-      auth_put(property_url, property_hash)
-    end
-
-    # method which builds endpoint's url
-    # method can be used for builing Matrix of resource x action  x Version of API
-    #
-    # @returns "https://api.staging.roomorama.com/v1.0/host/rooms"
-    #
-    # @example:
-    #   roomorama_client.create_property_url
-    #
-    def attribute_url(attribute, hash = nil)
-      end_point = END_POINTS[attribute.to_sym]
-      raise EndpointNotImplemented unless end_point
-      url = "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
-      hash ? (url % hash) : url
     end
 
     def get_access_token
