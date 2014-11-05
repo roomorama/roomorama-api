@@ -34,23 +34,7 @@ module RoomoramaApi
       alias_method :setup, :configuration
     end
 
-    def get_properties
-      auth_get(host_properties_url)
-    end
-
-    def get_property(property_hash)
-      property_url = host_property_url(property_hash)
-      auth_get(property_url)
-    end
-
-    def create_property(property_hash)
-      auth_post(host_properties_url, property_hash)
-    end
-
-    def update_property(property_hash)
-      property_url = host_property_url(property_hash)
-      auth_put(property_url, property_hash)
-    end
+    include RoomoramaApi::Host::Properties
 
     # method which builds endpoint's url
     # method can be used for builing Matrix of resource x action  x Version of API
