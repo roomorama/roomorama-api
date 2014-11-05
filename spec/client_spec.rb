@@ -20,8 +20,11 @@ describe "Roomorama API" do
       it { is_expected.to respond_to(:update_property) }
       it { is_expected.to respond_to(:get_properties) }
       it { is_expected.to respond_to(:get_property) }
+      it { is_expected.to respond_to(:get_availabilities) }
+      it { is_expected.to respond_to(:update_availabilities) }
       it { is_expected.to respond_to(:host_property_url) }
       it { is_expected.to respond_to(:host_properties_url) }
+      it { is_expected.to respond_to(:host_availabilities_url) }
     end
 
     describe ".configuration" do
@@ -114,6 +117,7 @@ describe "Roomorama API" do
       end
 
       it "raises InvalidRequest for a 422 response" do
+        response.stub_chain(:response, :body).and_return("{}")
         allow(response).to receive(:status).and_return(422)
         expect { roomorama_client.send(:prepare_response, response) }.to raise_error(RoomoramaApi::InvalidRequest)
       end
