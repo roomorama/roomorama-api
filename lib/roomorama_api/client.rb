@@ -3,7 +3,7 @@ module RoomoramaApi
   class Client
     include ::ActiveModel::AttributeMethods
 
-    END_POINTS = YAML::load(File.open(File.join(File.dirname(__FILE__), 'routes.yml')))
+    END_POINTS = YAML::load(File.open(File.join(__dir__, 'routes.yml')))
 
     attribute_method_suffix :_url
     define_attribute_methods END_POINTS.keys
@@ -35,6 +35,7 @@ module RoomoramaApi
     end
 
     include RoomoramaApi::Host::Properties
+    include RoomoramaApi::Host::Availabilities
 
     # method which builds endpoint's url
     # method can be used for builing Matrix of resource x action  x Version of API
@@ -76,7 +77,14 @@ module RoomoramaApi
     end
 
     def auth_request(method, url, attrs)
-      raw_response = auth_token.send method, url, params: attrs
+      if method == :get
+        raw_response = auth_token.send(method, url, params: attrs)
+      else
+        raw_response = auth_token.send(method, url) {|req| req.body = attrs.to_json}
+      end
+
+
+      raw_response = (method == :get) ? auth_token.send(method, url, params: attrs) : auth_token.send(method, url) {|req| req.body = attrs.to_json}
       prepare_response(raw_response)
     end
 
@@ -96,16 +104,18 @@ module RoomoramaApi
 
     def parse_successful_response(response)
       json_response = parse_response(response)
-      json_response['result'] if json_response
+      json_response = json_response['response'] if json_response && json_response.is_a?(Hash) && json_response.has_key?('response')
+      json_response
     end
 
     def parse_invalid_response(response)
       json_response = parse_response(response)
-      json_response['response']['errors'] if json_response && json_response['response'] && json_response['response']['errors']
+      return json_response['response']['errors'] if json_response && json_response['response'] && json_response['response']['errors']
+      return json_response['errors'] if json_response && json_response['errors']
     end
 
     def parse_response(response)
-      JSON.parse(response.response.body) if response.respond_to?(:response) && response.response.respond_to?(:body)
+      JSON.parse(response.response.body)
     end
 
   end

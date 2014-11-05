@@ -74,6 +74,14 @@
     <li><span class="include">::ActiveModel::AttributeMethods</span>
   
   
+  
+    <li><a class="include" href="Host/Properties.html">RoomoramaApi::Host::Properties</a>
+  
+  
+  
+    <li><a class="include" href="Host/Availabilities.html">RoomoramaApi::Host::Availabilities</a>
+  
+  
   </ul>
 </div>
 
@@ -88,21 +96,7 @@
     
     <li ><a href="#method-i-attribute_url">#attribute_url</a>
     
-    <li ><a href="#method-i-auth_request">#auth_request</a>
-    
-    <li ><a href="#method-i-auth_token">#auth_token</a>
-    
     <li ><a href="#method-i-configuration">#configuration</a>
-    
-    <li ><a href="#method-i-create_property">#create_property</a>
-    
-    <li ><a href="#method-i-get_access_token">#get_access_token</a>
-    
-    <li ><a href="#method-i-index_property">#index_property</a>
-    
-    <li ><a href="#method-i-parse_response">#parse_response</a>
-    
-    <li ><a href="#method-i-prepare_response">#prepare_response</a>
     
   </ul>
 </div>
@@ -127,6 +121,20 @@
 
     
 
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="END_POINTS">END_POINTS
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
     
 
     
@@ -204,7 +212,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 18</span>
+            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">config</span> = <span class="ruby-keyword">nil</span> )
   <span class="ruby-ivar">@config</span> = <span class="ruby-identifier">config</span> <span class="ruby-operator">||</span> <span class="ruby-constant">RoomoramaApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -230,7 +238,7 @@
         
         <div class="method-heading">
           <span class="method-name">attribute_url</span><span
-            class="method-args">(attribute)</span>
+            class="method-args">(attribute, hash = nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -253,85 +261,12 @@ href="https://api.staging.roomorama.com/v1.0/host/rooms">api.staging.roomorama.c
 
           
           <div class="method-source-code" id="attribute_url-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 71</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">attribute_url</span>(<span class="ruby-identifier">attribute</span>)
-  <span class="ruby-identifier">end_point</span> = <span class="ruby-identifier">@@end_points</span>[<span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">to_sym</span>]
+            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">attribute_url</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">hash</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">end_point</span> = <span class="ruby-constant">END_POINTS</span>[<span class="ruby-identifier">attribute</span>]
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">EndpointNotImplemented</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">end_point</span>
-  <span class="ruby-node">&quot;#{@config.base_url}/#{@config.api_version}/#{end_point}.json&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-auth_request" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">auth_request</span><span
-            class="method-args">(method, url, attrs)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="auth_request-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 87</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">auth_request</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">url</span>, <span class="ruby-identifier">attrs</span>)
-  <span class="ruby-identifier">raw_response</span> = <span class="ruby-identifier">auth_token</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">url</span>, <span class="ruby-identifier">attrs</span>
-  <span class="ruby-identifier">prepare_response</span>(<span class="ruby-identifier">raw_response</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-auth_token" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">auth_token</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>method which is authenticating against Roomorama API using OAuth2</p>
-
-<p>@returns OAuth::AccessToken</p>
-
-<p>@example:</p>
-
-<pre>auth_token.post(&quot;/v1.0/me.json&quot;)
-auth_token.post(create_room_url)</pre>
-          
-          
-
-          
-          <div class="method-source-code" id="auth_token-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 50</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">auth_token</span>
-  <span class="ruby-ivar">@access_token</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">get_access_token</span>
+  <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{@config.base_url}/#{@config.api_version}/#{end_point}.json&quot;</span>
+  <span class="ruby-identifier">hash</span> <span class="ruby-operator">?</span> (<span class="ruby-identifier">url</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">hash</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -362,185 +297,12 @@ auth_token.post(create_room_url)</pre>
 
           
           <div class="method-source-code" id="configuration-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">configuration</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
     <span class="ruby-identifier">config</span> = <span class="ruby-constant">RoomoramaApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>
     <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">config</span>)
     <span class="ruby-identifier">client</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">config</span> )
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-create_property" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create_property</span><span
-            class="method-args">(property_hash)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="create_property-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 54</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_property</span>(<span class="ruby-identifier">property_hash</span>)
-  <span class="ruby-identifier">auth_post</span>(<span class="ruby-identifier">create_property_url</span>, <span class="ruby-identifier">property_hash</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-get_access_token" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_access_token</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="get_access_token-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 77</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_access_token</span>
-  <span class="ruby-identifier">client</span> = <span class="ruby-operator">::</span><span class="ruby-constant">OAuth2</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">site</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">base_url</span>, <span class="ruby-identifier">raise_errors</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
-  <span class="ruby-constant">OAuth2</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">client</span>, <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">token</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-index_property" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">index_property</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>ToDo: return parsed response - not full object</p>
-          
-          
-
-          
-          <div class="method-source-code" id="index_property-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 59</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index_property</span>
-  <span class="ruby-identifier">auth_token</span>.<span class="ruby-identifier">get</span>( <span class="ruby-identifier">index_property_url</span> ).<span class="ruby-identifier">body</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-parse_response" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">parse_response</span><span
-            class="method-args">(response)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="parse_response-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 103</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_response</span>(<span class="ruby-identifier">response</span>)
-  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;response&#39;</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-prepare_response" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">prepare_response</span><span
-            class="method-args">(response)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="prepare_response-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 92</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_response</span>(<span class="ruby-identifier">response</span>)
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">200</span><span class="ruby-operator">..</span><span class="ruby-value">206</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">parse_response</span>(<span class="ruby-identifier">response</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">401</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">UnauthorizedRequest</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">422</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidRequest</span>, <span class="ruby-identifier">parse_response</span>(<span class="ruby-identifier">response</span>)[<span class="ruby-string">&#39;errors&#39;</span>]
-  <span class="ruby-keyword">when</span> <span class="ruby-value">500</span><span class="ruby-operator">..</span><span class="ruby-value">505</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ApiNotResponding</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">UnexpectedResponse</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -561,7 +323,7 @@ auth_token.post(create_room_url)</pre>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.0.
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

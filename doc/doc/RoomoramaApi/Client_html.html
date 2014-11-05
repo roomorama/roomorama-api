@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Client.html - RDoc Documentation</title>
+
+<link href="../../fonts.css" rel="stylesheet">
+<link href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/navigation.js"></script>
+<script src="../../js/search_index.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/searcher.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../README_md.html">README</a>
+  
+    <li><a href="../../doc/Gemfile_html.html">Gemfile.html</a>
+  
+    <li><a href="../../doc/Gemfile_lock_html.html">Gemfile_lock.html</a>
+  
+    <li><a href="../../doc/OAuth2_html.html">OAuth2.html</a>
+  
+    <li><a href="../../doc/README_md_html.html">README_md.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi_html.html">RoomoramaApi.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/ApiNotResponding_html.html">ApiNotResponding.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/Client_html.html">Client.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/Config_html.html">Config.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/EndpointNotImplemented_html.html">EndpointNotImplemented.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/Error_html.html">Error.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/InvalidRequest_html.html">InvalidRequest.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/UnauthorizedRequest_html.html">UnauthorizedRequest.html</a>
+  
+    <li><a href="../../doc/RoomoramaApi/UnexpectedResponse_html.html">UnexpectedResponse.html</a>
+  
+    <li><a href="../../doc/index_html.html">index.html</a>
+  
+    <li><a href="../../doc/js/darkfish_js.html">darkfish.js</a>
+  
+    <li><a href="../../doc/js/jquery_js.html">jquery.js</a>
+  
+    <li><a href="../../doc/js/navigation_js.html">navigation.js</a>
+  
+    <li><a href="../../doc/js/search_js.html">search.js</a>
+  
+    <li><a href="../../doc/js/search_index_js.html">search_index.js</a>
+  
+    <li><a href="../../doc/js/searcher_js.html">searcher.js</a>
+  
+    <li><a href="../../doc/rdoc_css.html">rdoc.css</a>
+  
+    <li><a href="../../doc/roomorama_api_gemspec_html.html">roomorama_api_gemspec.html</a>
+  
+    <li><a href="../../doc/table_of_contents_html.html">table_of_contents.html</a>
+  
+    <li><a href="../../roomorama_api_gemspec.html">roomorama_api.gemspec</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page doc/RoomoramaApi/Client.html">
+
+<p>&lt;!DOCTYPE html&gt;</p>
+
+<p>&lt;html&gt; &lt;head&gt; &lt;meta charset=“UTF-8”&gt;</p>
+
+<p>&lt;title&gt;class <a
+href="../../RoomoramaApi/Client.html">RoomoramaApi::Client</a> - RDoc
+Documentation&lt;/title&gt;</p>
+
+<p>&lt;link href=“../fonts.css” rel=“stylesheet”&gt; &lt;link
+href=“../rdoc.css” rel=“stylesheet”&gt;</p>
+
+<p>&lt;script type=“text/javascript”&gt;</p>
+
+<pre>var rdoc_rel_prefix = &quot;../&quot;;</pre>
+
+<p>&lt;/script&gt;</p>
+
+<p>&lt;script src=“../js/jquery.js”&gt;&lt;/script&gt; &lt;script
+src=“../js/navigation.js”&gt;&lt;/script&gt; &lt;script
+src=“../js/search_index.js”&gt;&lt;/script&gt; &lt;script
+src=“../js/search.js”&gt;&lt;/script&gt; &lt;script
+src=“../js/searcher.js”&gt;&lt;/script&gt; &lt;script
+src=“../js/darkfish.js”&gt;&lt;/script&gt;</p>
+
+<p>&lt;body id=“top” role=“document” class=“class”&gt; &lt;nav
+role=“navigation”&gt;</p>
+
+<pre>&lt;div id=&quot;project-navigation&quot;&gt;
+  &lt;div id=&quot;home-section&quot; role=&quot;region&quot; title=&quot;Quick navigation&quot; class=&quot;nav-section&quot;&gt;
+&lt;h2&gt;
+  &lt;a href=&quot;../index.html&quot; rel=&quot;home&quot;&gt;Home&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;div id=&quot;table-of-contents-navigation&quot;&gt;
+  &lt;a href=&quot;../table_of_contents.html#pages&quot;&gt;Pages&lt;/a&gt;
+  &lt;a href=&quot;../table_of_contents.html#classes&quot;&gt;Classes&lt;/a&gt;
+  &lt;a href=&quot;../table_of_contents.html#methods&quot;&gt;Methods&lt;/a&gt;
+&lt;/div&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<pre>  &lt;div id=&quot;search-section&quot; role=&quot;search&quot; class=&quot;project-section initially-hidden&quot;&gt;
+&lt;form action=&quot;#&quot; method=&quot;get&quot; accept-charset=&quot;utf-8&quot;&gt;
+  &lt;div id=&quot;search-field-wrapper&quot;&gt;
+    &lt;input id=&quot;search-field&quot; role=&quot;combobox&quot; aria-label=&quot;Search&quot;
+           aria-autocomplete=&quot;list&quot; aria-controls=&quot;search-results&quot;
+           type=&quot;text&quot; name=&quot;search&quot; placeholder=&quot;Search&quot; spellcheck=&quot;false&quot;
+           title=&quot;Type to search, Up and Down to navigate, Enter to load&quot;&gt;
+  &lt;/div&gt;
+
+  &lt;ul id=&quot;search-results&quot; aria-label=&quot;Search Results&quot;
+      aria-busy=&quot;false&quot; aria-expanded=&quot;false&quot;
+      aria-atomic=&quot;false&quot; class=&quot;initially-hidden&quot;&gt;&lt;/ul&gt;
+&lt;/form&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<pre>&lt;/div&gt;
+
+&lt;div id=&quot;class-metadata&quot;&gt;
+
+  &lt;div id=&quot;parent-class-section&quot; class=&quot;nav-section&quot;&gt;
+&lt;h3&gt;Parent&lt;/h3&gt;
+
+&lt;p class=&quot;link&quot;&gt;Object</pre>
+
+<p>&lt;/div&gt;</p>
+
+<pre>  &lt;div id=&quot;includes-section&quot; class=&quot;nav-section&quot;&gt;
+&lt;h3&gt;Included Modules&lt;/h3&gt;
+
+&lt;ul class=&quot;link-list&quot;&gt;
+
+  &lt;li&gt;&lt;span class=&quot;include&quot;&gt;::ActiveModel::AttributeMethods&lt;/span&gt;
+
+&lt;/ul&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<pre>&lt;!-- Method Quickref --&gt;</pre>
+
+<p>&lt;div id=“method-list-section” class=“nav-section”&gt;</p>
+
+<pre>&lt;h3&gt;Methods&lt;/h3&gt;
+
+&lt;ul class=&quot;link-list&quot; role=&quot;directory&quot;&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-c-new&quot;&gt;::new&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-attribute_url&quot;&gt;#attribute_url&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-auth_request&quot;&gt;#auth_request&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-auth_token&quot;&gt;#auth_token&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-configuration&quot;&gt;#configuration&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-create_property&quot;&gt;#create_property&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-get_access_token&quot;&gt;#get_access_token&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-index_property&quot;&gt;#index_property&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-parse_response&quot;&gt;#parse_response&lt;/a&gt;
+
+  &lt;li &gt;&lt;a href=&quot;#method-i-prepare_response&quot;&gt;#prepare_response&lt;/a&gt;
+
+&lt;/ul&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<pre>&lt;/div&gt;</pre>
+
+<p>&lt;/nav&gt;</p>
+
+<p>&lt;main role=“main” aria-labelledby=“class-RoomoramaApi::Client”&gt;</p>
+
+<pre class="ruby"><span class="ruby-operator">&lt;</span><span class="ruby-identifier">h1</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;class-RoomoramaApi::Client&quot;</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;class&quot;</span><span class="ruby-operator">&gt;</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">RoomoramaApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>
+<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/h1&gt;
+
+&lt;section class=&quot;description&quot;&gt;
+
+&lt;/se</span><span class="ruby-identifier">ction</span><span class="ruby-operator">&gt;</span>
+
+<span class="ruby-operator">&lt;</span><span class="ruby-identifier">section</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;5Buntitled-5D&quot;</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;documentation-section&quot;</span><span class="ruby-operator">&gt;</span>
+
+  <span class="ruby-operator">&lt;</span><span class="ruby-identifier">section</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;attribute-method-details&quot;</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-section&quot;</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">header</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">h3</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Attributes</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/h3&gt;
+    &lt;/</span><span class="ruby-identifier">header</span><span class="ruby-operator">&gt;</span>
+
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;attribute-i-access_token&quot;</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-detail&quot;</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-heading attribute-method-heading&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-name&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">access_token</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;&lt;span
+          class=&quot;attribute-access-type&quot;&gt;[R]&lt;/s</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
+
+      &lt;div class=&quot;method-description&quot;&gt;
+
+      &lt;/</span><span class="ruby-identifier">div</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
+
+    &lt;div id=&quot;attribute-i-config&quot; class=&quot;method-detail&quot;&gt;
+      &lt;div class=&quot;method-heading attribute-method-heading&quot;&gt;
+        &lt;span class=&quot;method-name&quot;&gt;config&lt;/s</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span>
+          <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;attribute-access-type&quot;</span><span class="ruby-operator">&gt;</span>[<span class="ruby-constant">RW</span>]<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
+      &lt;/</span><span class="ruby-identifier">div</span><span class="ruby-operator">&gt;</span>
+
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-description&quot;</span><span class="ruby-operator">&gt;</span>
+
+      <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
+    &lt;/</span><span class="ruby-identifier">div</span><span class="ruby-operator">&gt;</span>
+
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;attribute-i-token&quot;</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-detail&quot;</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-heading attribute-method-heading&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-name&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">token</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;&lt;span
+          class=&quot;attribute-access-type&quot;&gt;[R]&lt;/s</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+      <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
+
+      &lt;div class=&quot;method-description&quot;&gt;
+
+      &lt;/</span><span class="ruby-identifier">div</span><span class="ruby-operator">&gt;</span>
+    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
+
+  &lt;/se</span><span class="ruby-identifier">ction</span><span class="ruby-operator">&gt;</span>
+
+   <span class="ruby-operator">&lt;</span><span class="ruby-identifier">section</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;public-class-5Buntitled-5D-method-details&quot;</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-section&quot;</span><span class="ruby-operator">&gt;</span>
+     <span class="ruby-operator">&lt;</span><span class="ruby-identifier">header</span><span class="ruby-operator">&gt;</span>
+       <span class="ruby-operator">&lt;</span><span class="ruby-identifier">h3</span><span class="ruby-operator">&gt;</span><span class="ruby-constant">Public</span> <span class="ruby-constant">Class</span> <span class="ruby-constant">Methods</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/h3&gt;
+     &lt;/</span><span class="ruby-identifier">header</span><span class="ruby-operator">&gt;</span>
+
+    <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;method-c-new&quot;</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-detail &quot;</span><span class="ruby-operator">&gt;</span>
+
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-heading&quot;</span><span class="ruby-operator">&gt;</span>
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-name&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">new</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;&lt;span
+          class=&quot;method-args&quot;&gt;( config = nil )&lt;/s</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-click-advice&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">click</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">toggle</span> <span class="ruby-identifier">source</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
+
+      &lt;/</span><span class="ruby-identifier">div</span><span class="ruby-operator">&gt;</span>
+
+      <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-description&quot;</span><span class="ruby-operator">&gt;</span>
+
+        <span class="ruby-operator">&lt;</span><span class="ruby-identifier">div</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-source-code&quot;</span> <span class="ruby-identifier">id</span>=<span class="ruby-string">&quot;new-source&quot;</span><span class="ruby-operator">&gt;</span>
+          <span class="ruby-operator">&lt;</span><span class="ruby-identifier">pre</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span> <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;ruby-comment&quot;</span><span class="ruby-operator">&gt;</span><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 18&lt;/span&gt;</span>
+</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;initialize&lt;/span&gt;( &lt;span
+class=“ruby-identifier”&gt;config&lt;/span&gt; = &lt;span
+class=“ruby-keyword”&gt;nil&lt;/span&gt; )</p>
+
+<pre>&lt;span class=&quot;ruby-ivar&quot;&gt;@config&lt;/span&gt; = &lt;span class=&quot;ruby-identifier&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;ruby-operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;ruby-constant&quot;&gt;RoomoramaApi&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;ruby-constant&quot;&gt;Config&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;new&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>      &lt;/div&gt;
+
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/section&gt;
+
+ &lt;section id=&quot;public-instance-5Buntitled-5D-method-details&quot; class=&quot;method-section&quot;&gt;
+   &lt;header&gt;
+     &lt;h3&gt;Public Instance Methods&lt;/h3&gt;
+   &lt;/header&gt;
+
+  &lt;div id=&quot;method-i-attribute_url&quot; class=&quot;method-detail &quot;&gt;
+
+    &lt;div class=&quot;method-heading&quot;&gt;
+      &lt;span class=&quot;method-name&quot;&gt;attribute_url&lt;/span&gt;&lt;span
+        class=&quot;method-args&quot;&gt;(attribute)&lt;/span&gt;
+
+      &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+    &lt;/div&gt;
+
+    &lt;div class=&quot;method-description&quot;&gt;
+
+      &lt;p&gt;method which builds endpoint&amp;#39;s url method can be used for builing</pre>
+
+<p>Matrix of resource x action  x Version of API&lt;/p&gt;</p>
+
+<p>&lt;p&gt;@returns “&lt;a href=“<a
+href="https://api.staging.roomorama.com/v1.0/host/rooms">api.staging.roomorama.com/v1.0/host/rooms</a>”</p">api.staging.roomorama.com/v1.0/host/rooms”>api.staging.roomorama.com/v1.0/host/rooms</a>”</p</a>&gt;</p>
+
+<p>&lt;p&gt;@example:&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;roomorama_client.create_property_url&lt;/pre&gt;</p>
+
+<pre>&lt;div class=&quot;method-source-code&quot; id=&quot;attribute_url-source&quot;&gt;
+  &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 71&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;attribute_url&lt;/span&gt;(&lt;span
+class=“ruby-identifier”&gt;attribute&lt;/span&gt;)</p>
+
+<pre>&lt;span class=&quot;ruby-identifier&quot;&gt;end_point&lt;/span&gt; = &lt;span class=&quot;ruby-identifier&quot;&gt;@@end_points&lt;/span&gt;[&lt;span class=&quot;ruby-identifier&quot;&gt;attribute&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;to_sym&lt;/span&gt;]
+&lt;span class=&quot;ruby-identifier&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ruby-constant&quot;&gt;EndpointNotImplemented&lt;/span&gt; &lt;span class=&quot;ruby-keyword&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;end_point&lt;/span&gt;
+&lt;span class=&quot;ruby-node&quot;&gt;&amp;quot;#{@config.base_url}/#{@config.api_version}/#{end_point}.json&amp;quot;&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;method-i-auth_request&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;auth_request&lt;/span&gt;&lt;span
+      class=&quot;method-args&quot;&gt;(method, url, attrs)&lt;/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;div class=&quot;method-source-code&quot; id=&quot;auth_request-source&quot;&gt;
+      &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 87&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;auth_request&lt;/span&gt;(&lt;span
+class=“ruby-identifier”&gt;method&lt;/span&gt;, &lt;span
+class=“ruby-identifier”&gt;url&lt;/span&gt;, &lt;span
+class=“ruby-identifier”&gt;attrs&lt;/span&gt;)</p>
+
+<pre>&lt;span class=&quot;ruby-identifier&quot;&gt;raw_response&lt;/span&gt; = &lt;span class=&quot;ruby-identifier&quot;&gt;auth_token&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;method&lt;/span&gt;, &lt;span class=&quot;ruby-identifier&quot;&gt;url&lt;/span&gt;, &lt;span class=&quot;ruby-identifier&quot;&gt;attrs&lt;/span&gt;
+&lt;span class=&quot;ruby-identifier&quot;&gt;prepare_response&lt;/span&gt;(&lt;span class=&quot;ruby-identifier&quot;&gt;raw_response&lt;/span&gt;)</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;method-i-auth_token&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;auth_token&lt;/span&gt;&lt;span
+      class=&quot;method-args&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;p&gt;method which is authenticating against Roomorama API using OAuth2&lt;/p&gt;</pre>
+
+<p>&lt;p&gt;@returns OAuth::AccessToken&lt;/p&gt;</p>
+
+<p>&lt;p&gt;@example:&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;auth_token.post(&amp;quot;/v1.0/me.json&amp;quot;)
+auth_token.post(create_room_url)&lt;/pre&gt;</p>
+
+<pre>&lt;div class=&quot;method-source-code&quot; id=&quot;auth_token-source&quot;&gt;
+  &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 50&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;auth_token&lt;/span&gt;</p>
+
+<pre>&lt;span class=&quot;ruby-ivar&quot;&gt;@access_token&lt;/span&gt; &lt;span class=&quot;ruby-operator&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;get_access_token&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre class="ruby">    <span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
+
+  &lt;/</span><span class="ruby-identifier">div</span><span class="ruby-operator">&gt;</span>
+
+<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/div&gt;
+
+&lt;div id=&quot;method-i-configuration&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;configuration&lt;/s</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span><span class="ruby-operator">&lt;</span><span class="ruby-identifier">span</span>
+      <span class="ruby-identifier">class</span>=<span class="ruby-string">&quot;method-args&quot;</span><span class="ruby-operator">&gt;</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">config</span><span class="ruby-operator">|</span> <span class="ruby-operator">...</span> }<span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/s</span><span class="ruby-identifier">pan</span><span class="ruby-operator">&gt;</span>
+
+  <span class="ruby-operator">&lt;</span><span class="ruby-node">/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;div class=&quot;method-source-code&quot; id=&quot;configuration-source&quot;&gt;
+      &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/</span><span class="ruby-identifier">roomorama_api</span><span class="ruby-operator">/</span><span class="ruby-identifier">client</span>.<span class="ruby-identifier">rb</span>, <span class="ruby-identifier">line</span> <span class="ruby-value">30</span><span class="ruby-operator">&lt;</span><span class="ruby-regexp">/span&gt;
+</span></pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;configuration&lt;/span&gt;</p>
+
+<pre>&lt;span class=&quot;ruby-keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;block_given?&lt;/span&gt;
+  &lt;span class=&quot;ruby-identifier&quot;&gt;config&lt;/span&gt; = &lt;span class=&quot;ruby-constant&quot;&gt;RoomoramaApi&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;ruby-constant&quot;&gt;Config&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;new&lt;/span&gt;
+  &lt;span class=&quot;ruby-keyword&quot;&gt;yield&lt;/span&gt;(&lt;span class=&quot;ruby-identifier&quot;&gt;config&lt;/span&gt;)
+  &lt;span class=&quot;ruby-identifier&quot;&gt;client&lt;/span&gt; = &lt;span class=&quot;ruby-keyword&quot;&gt;self&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;new&lt;/span&gt;( &lt;span class=&quot;ruby-identifier&quot;&gt;config&lt;/span&gt; )
+&lt;span class=&quot;ruby-keyword&quot;&gt;end&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;method-i-create_property&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;create_property&lt;/span&gt;&lt;span
+      class=&quot;method-args&quot;&gt;(property_hash)&lt;/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;div class=&quot;method-source-code&quot; id=&quot;create_property-source&quot;&gt;
+      &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 54&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;create_property&lt;/span&gt;(&lt;span
+class=“ruby-identifier”&gt;property_hash&lt;/span&gt;)</p>
+
+<pre>&lt;span class=&quot;ruby-identifier&quot;&gt;auth_post&lt;/span&gt;(&lt;span class=&quot;ruby-identifier&quot;&gt;create_property_url&lt;/span&gt;, &lt;span class=&quot;ruby-identifier&quot;&gt;property_hash&lt;/span&gt;)</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;method-i-get_access_token&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;get_access_token&lt;/span&gt;&lt;span
+      class=&quot;method-args&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;div class=&quot;method-source-code&quot; id=&quot;get_access_token-source&quot;&gt;
+      &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 77&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;get_access_token&lt;/span&gt;</p>
+
+<pre>&lt;span class=&quot;ruby-identifier&quot;&gt;client&lt;/span&gt; = &lt;span class=&quot;ruby-operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;ruby-constant&quot;&gt;OAuth2&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;ruby-constant&quot;&gt;Client&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;new&lt;/span&gt;(&lt;span class=&quot;ruby-string&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;, &lt;span class=&quot;ruby-string&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;, &lt;span class=&quot;ruby-identifier&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ruby-ivar&quot;&gt;@config&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;base_url&lt;/span&gt;, &lt;span class=&quot;ruby-identifier&quot;&gt;raise_errors&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ruby-keyword&quot;&gt;false&lt;/span&gt;)
+&lt;span class=&quot;ruby-constant&quot;&gt;OAuth2&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;ruby-constant&quot;&gt;AccessToken&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;new&lt;/span&gt;(&lt;span class=&quot;ruby-identifier&quot;&gt;client&lt;/span&gt;, &lt;span class=&quot;ruby-ivar&quot;&gt;@config&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;token&lt;/span&gt;)</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;method-i-index_property&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;index_property&lt;/span&gt;&lt;span
+      class=&quot;method-args&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;p&gt;ToDo: return parsed response - not full object&lt;/p&gt;
+
+    &lt;div class=&quot;method-source-code&quot; id=&quot;index_property-source&quot;&gt;
+      &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 59&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;index_property&lt;/span&gt;</p>
+
+<pre>&lt;span class=&quot;ruby-identifier&quot;&gt;auth_token&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;get&lt;/span&gt;( &lt;span class=&quot;ruby-identifier&quot;&gt;index_property_url&lt;/span&gt; ).&lt;span class=&quot;ruby-identifier&quot;&gt;body&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;method-i-parse_response&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;parse_response&lt;/span&gt;&lt;span
+      class=&quot;method-args&quot;&gt;(response)&lt;/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;div class=&quot;method-source-code&quot; id=&quot;parse_response-source&quot;&gt;
+      &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 103&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;parse_response&lt;/span&gt;(&lt;span
+class=“ruby-identifier”&gt;response&lt;/span&gt;)</p>
+
+<pre>&lt;span class=&quot;ruby-constant&quot;&gt;JSON&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;parse&lt;/span&gt;(&lt;span class=&quot;ruby-identifier&quot;&gt;response&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;response&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;body&lt;/span&gt;)[&lt;span class=&quot;ruby-string&quot;&gt;&amp;#39;response&amp;#39;&lt;/span&gt;]</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;method-i-prepare_response&quot; class=&quot;method-detail &quot;&gt;
+
+  &lt;div class=&quot;method-heading&quot;&gt;
+    &lt;span class=&quot;method-name&quot;&gt;prepare_response&lt;/span&gt;&lt;span
+      class=&quot;method-args&quot;&gt;(response)&lt;/span&gt;
+
+    &lt;span class=&quot;method-click-advice&quot;&gt;click to toggle source&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div class=&quot;method-description&quot;&gt;
+
+    &lt;div class=&quot;method-source-code&quot; id=&quot;prepare_response-source&quot;&gt;
+      &lt;pre&gt;&lt;span class=&quot;ruby-comment&quot;&gt;# File lib/roomorama_api/client.rb, line 92&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;def&lt;/span&gt; &lt;span
+class=“ruby-identifier”&gt;prepare_response&lt;/span&gt;(&lt;span
+class=“ruby-identifier”&gt;response&lt;/span&gt;)</p>
+
+<pre>&lt;span class=&quot;ruby-keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;response&lt;/span&gt;.&lt;span class=&quot;ruby-identifier&quot;&gt;status&lt;/span&gt;
+&lt;span class=&quot;ruby-keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;ruby-value&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;ruby-value&quot;&gt;206&lt;/span&gt; &lt;span class=&quot;ruby-keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;parse_response&lt;/span&gt;(&lt;span class=&quot;ruby-identifier&quot;&gt;response&lt;/span&gt;)
+&lt;span class=&quot;ruby-keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;ruby-value&quot;&gt;401&lt;/span&gt; &lt;span class=&quot;ruby-keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ruby-constant&quot;&gt;UnauthorizedRequest&lt;/span&gt;
+&lt;span class=&quot;ruby-keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;ruby-value&quot;&gt;422&lt;/span&gt; &lt;span class=&quot;ruby-keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ruby-constant&quot;&gt;InvalidRequest&lt;/span&gt;, &lt;span class=&quot;ruby-identifier&quot;&gt;parse_response&lt;/span&gt;(&lt;span class=&quot;ruby-identifier&quot;&gt;response&lt;/span&gt;)[&lt;span class=&quot;ruby-string&quot;&gt;&amp;#39;errors&amp;#39;&lt;/span&gt;]
+&lt;span class=&quot;ruby-keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;ruby-value&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;ruby-operator&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;ruby-value&quot;&gt;505&lt;/span&gt; &lt;span class=&quot;ruby-keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;ruby-identifier&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ruby-constant&quot;&gt;ApiNotResponding&lt;/span&gt;
+&lt;span class=&quot;ruby-keyword&quot;&gt;else&lt;/span&gt;
+  &lt;span class=&quot;ruby-identifier&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ruby-constant&quot;&gt;UnexpectedResponse&lt;/span&gt;
+&lt;span class=&quot;ruby-keyword&quot;&gt;end&lt;/span&gt;</pre>
+
+<p>&lt;span class=“ruby-keyword”&gt;end&lt;/span&gt;&lt;/pre&gt;</p>
+
+<pre>        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+
+  &lt;/section&gt;
+
+&lt;/section&gt;</pre>
+
+<p>&lt;/main&gt;</p>
+
+<p>&lt;footer id=“validator-badges” role=“contentinfo”&gt;</p>
+
+<pre>&lt;p&gt;&lt;a href=&quot;http://validator.w3.org/check/referer&quot;&gt;Validate&lt;/a&gt;
+&lt;p&gt;Generated by &lt;a href=&quot;http://rdoc.rubyforge.org&quot;&gt;RDoc&lt;/a&gt; 4.1.0.
+&lt;p&gt;Based on &lt;a href=&quot;http://deveiate.org/projects/Darkfish-Rdoc/&quot;&gt;Darkfish&lt;/a&gt; by &lt;a href=&quot;http://deveiate.org&quot;&gt;Michael Granger&lt;/a&gt;.</pre>
+
+<p>&lt;/footer&gt;</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
