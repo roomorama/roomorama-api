@@ -105,7 +105,8 @@ module RoomoramaApi
 
     def parse_successful_response(response)
       json_response = parse_response(response)
-      json_response = json_response['response'] if json_response && json_response.is_a?(Hash) && json_response.has_key?('response')
+      return json_response['response'] if json_response && json_response.is_a?(Hash) && json_response.has_key?('response')
+      return json_response['result'] if json_response && json_response.is_a?(Hash) && json_response.has_key?('result')
       json_response
     end
 
