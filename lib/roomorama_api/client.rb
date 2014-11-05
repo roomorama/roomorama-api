@@ -83,9 +83,6 @@ module RoomoramaApi
       else
         raw_response = auth_token.send(method, url) {|req| req.body = attrs.to_json}
       end
-
-
-      raw_response = (method == :get) ? auth_token.send(method, url, params: attrs) : auth_token.send(method, url) {|req| req.body = attrs.to_json}
       prepare_response(raw_response)
     end
 
