@@ -36,6 +36,7 @@ module RoomoramaApi
 
     include RoomoramaApi::Host::Properties
     include RoomoramaApi::Host::Availabilities
+    include RoomoramaApi::Host::Images
 
     # method which builds endpoint's url
     # method can be used for builing Matrix of resource x action  x Version of API
