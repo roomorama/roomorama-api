@@ -37,19 +37,6 @@ module RoomoramaApi
       alias_method :setup, :configuration
     end
 
-
-    # method which is authenticating against Roomorama API using OAuth2
-    #
-    # @returns OAuth::AccessToken
-    #
-    # @example:
-    #   auth_token.post("/v1.0/me.json")
-    #   auth_token.post(create_room_url)
-    #
-    def auth_token
-      @access_token ||= get_access_token
-    end
-
     def get_properties
       auth_get(host_properties_url)
     end
@@ -81,6 +68,20 @@ module RoomoramaApi
       raise EndpointNotImplemented unless end_point
       url = "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
       hash ? (url % hash) : url
+    end
+
+    private
+
+    # method which is authenticating against Roomorama API using OAuth2
+    #
+    # @returns OAuth::AccessToken
+    #
+    # @example:
+    #   auth_token.post("/v1.0/me.json")
+    #   auth_token.post(create_room_url)
+    #
+    def auth_token
+      @access_token ||= get_access_token
     end
 
     def get_access_token

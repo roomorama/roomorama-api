@@ -16,7 +16,6 @@ describe "Roomorama API" do
 
     describe "Public interface" do
       subject { RoomoramaApi::Client.new }
-      it { is_expected.to respond_to(:auth_token) }
       it { is_expected.to respond_to(:create_property) }
       it { is_expected.to respond_to(:update_property) }
       it { is_expected.to respond_to(:get_properties) }
@@ -57,16 +56,17 @@ describe "Roomorama API" do
 
     describe "#auth_token" do
       let(:roomorama_client){ RoomoramaApi::Client.setup{|c| c.token = "fake_token_#313" }  }
-      it "respond to auth_token" do
-        expect( roomorama_client ).to respond_to(:auth_token)
+
+      it "is a private method" do
+        expect( roomorama_client ).to_not respond_to(:auth_token)
       end
 
       it "return OAuth::Token class" do
-        expect( roomorama_client.auth_token ).to be_instance_of( OAuth2::AccessToken )
+        expect( roomorama_client.send(:auth_token) ).to be_instance_of( OAuth2::AccessToken )
       end
 
       it "assign access_token with value of token passed to the constructor" do
-        expect( roomorama_client.auth_token.token ).to eql( "fake_token_#313" )
+        expect( roomorama_client.send(:auth_token).token ).to eql( "fake_token_#313" )
       end
     end
 
@@ -104,28 +104,28 @@ describe "Roomorama API" do
     describe "#prepare_response" do
       let(:response) { double("response") }
 
-      it "responds to prepare_response" do
-        expect( roomorama_client ).to respond_to(:prepare_response)
+      it "is a private method" do
+        expect(roomorama_client).to_not respond_to(:prepare_response)
       end
 
       it "raises UnauthorizedRequest for a 401 response" do
         allow(response).to receive(:status).and_return(401)
-        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::UnauthorizedRequest)
+        expect { roomorama_client.send(:prepare_response, response) }.to raise_error(RoomoramaApi::UnauthorizedRequest)
       end
 
       it "raises InvalidRequest for a 422 response" do
         allow(response).to receive(:status).and_return(422)
-        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::InvalidRequest)
+        expect { roomorama_client.send(:prepare_response, response) }.to raise_error(RoomoramaApi::InvalidRequest)
       end
 
       it "raises ApiNotResponding for a 5XX response" do
         allow(response).to receive(:status).and_return(500)
-        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::ApiNotResponding)
+        expect { roomorama_client.send(:prepare_response, response) }.to raise_error(RoomoramaApi::ApiNotResponding)
       end
 
       it "raises UnexpectedResponse for not handled error" do
         allow(response).to receive(:status).and_return(301)
-        expect { roomorama_client.prepare_response(response) }.to raise_error(RoomoramaApi::UnexpectedResponse)
+        expect { roomorama_client.send(:prepare_response, response) }.to raise_error(RoomoramaApi::UnexpectedResponse)
       end
     end
 
