@@ -1,0 +1,2 @@
+host_properties: "host/rooms"
+host_property: "host/rooms/%{id}"
