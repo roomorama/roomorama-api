@@ -1,13 +1,7 @@
-Tue, 04 Nov 2014 06:44:44 +0100
-./Gemfile	Mon, 03 Nov 2014 12:18:50 +0100
-./Gemfile.lock	Mon, 03 Nov 2014 12:19:20 +0100
-./lib/roomorama_api/client.rb	Mon, 03 Nov 2014 11:03:59 +0100
-./lib/roomorama_api/config.rb	Thu, 30 Oct 2014 07:44:26 +0100
-./lib/roomorama_api.rb	Thu, 30 Oct 2014 07:44:26 +0100
-./README.md	Thu, 30 Oct 2014 08:23:06 +0100
-./roomapi-0.0.4.gem	Mon, 03 Nov 2014 16:27:04 +0100
-./roomorama_api.gemspec	Tue, 04 Nov 2014 06:39:54 +0100
-./spec/client_spec.rb	Thu, 30 Oct 2014 11:55:00 +0100
-./spec/config_spec.rb	Thu, 30 Oct 2014 07:44:26 +0100
-./spec/roomorama_api_spec.rb	Tue, 28 Oct 2014 08:43:29 +0100
-./spec/spec_helper.rb	Mon, 03 Nov 2014 11:22:52 +0100
+Wed, 05 Nov 2014 16:28:24 +0800
+lib/roomorama_api.rb	Wed, 05 Nov 2014 16:12:50 +0800
+lib/roomorama_api/client.rb	Wed, 05 Nov 2014 16:14:00 +0800
+lib/roomorama_api/config.rb	Mon, 03 Nov 2014 16:06:07 +0800
+lib/roomorama_api/host/availabilities.rb	Wed, 05 Nov 2014 16:25:28 +0800
+lib/roomorama_api/host/properties.rb	Wed, 05 Nov 2014 16:12:24 +0800
+lib/roomorama_api/routes.yml	Wed, 05 Nov 2014 16:12:50 +0800
