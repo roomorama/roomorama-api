@@ -68,7 +68,11 @@ module RoomoramaApi
     end
 
     def get_access_token
-      client = ::OAuth2::Client.new("", "", site: @config.base_url, raise_errors: false)
+      opts = {
+        site: @config.base_url,
+        raise_errors: false
+      }
+      client = ::OAuth2::Client.new("", "", opts)
       OAuth2::AccessToken.new(client, @config.token)
     end
 
@@ -81,7 +85,8 @@ module RoomoramaApi
       if method == :get
         raw_response = auth_token.send(method, url, params: attrs)
       else
-        raw_response = auth_token.send(method, url) {|req| req.body = attrs.to_json}
+        opts = { headers: {'Content-Type' => 'application/json'} }
+        raw_response = auth_token.send(method, url, opts) { |req| req.body = attrs.to_json }
       end
       prepare_response(raw_response)
     end
@@ -114,7 +119,9 @@ module RoomoramaApi
     end
 
     def parse_response(response)
-      JSON.parse(response.response.body)
+      body = response.response.body.strip
+      return JSON.parse(response.response.body) unless body.empty?
+      true
     end
 
   end

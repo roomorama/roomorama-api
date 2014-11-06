@@ -123,13 +123,57 @@
 
         <div class="method-description">
           
-          
+          <p>Uploads a new image</p>
+
+<p>@example uploads an image encoded using base64 (uploads using
+&#39;data&#39; attribute are always synchronous)</p>
+
+<pre>client.create_image({
+  room_id: 123456,
+  data: &quot;...base64string...&quot;,
+  caption: &quot;image uploaded in base64&quot;
+})</pre>
+
+<p>@example uploads an image providing the image URL synchronously</p>
+
+<pre>client.create_image({
+  room_id: 123456,
+  image_url: &quot;http://www.example.com/image.png&quot;
+})</pre>
+
+<p>@example uploads an image providing the image URL asynchronously</p>
+
+<pre>client.create_image({
+  room_id: 123456,
+  image_url: &quot;http://www.example.com/image.png&quot;,
+  async_upload: true
+})</pre>
+
+<p>@return the image representation when the image is uploaded synchronously</p>
+
+<pre class="ruby">{
+  <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2231212</span>,
+  <span class="ruby-string">&quot;url&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;missing/room-image-processing-search_result.png&quot;</span>,
+  <span class="ruby-string">&quot;styles&quot;</span>=<span class="ruby-operator">&gt;</span>{
+    <span class="ruby-string">&quot;large&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;missing/room-image-processing-gallery.png&quot;</span>,
+    <span class="ruby-string">&quot;medium&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;missing/room-image-processing-medium.png&quot;</span>,
+    <span class="ruby-string">&quot;small&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;missing/room-image-processing-small.png&quot;</span>
+  },
+  <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">8</span>,
+  <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-06 06:00:59&quot;</span>,
+  <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-06 06:00:59&quot;</span>
+}
+</pre>
+
+<p>@return true when the image is uploaded asynchronously</p>
+
+<pre>true</pre>
           
           
 
           
           <div class="method-source-code" id="create_image-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/host/images.rb, line 64</span>
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/images.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_image</span>(<span class="ruby-identifier">image_hash</span>)
   <span class="ruby-identifier">auth_post</span>(<span class="ruby-identifier">host_images_url</span>(<span class="ruby-identifier">image_hash</span>), <span class="ruby-identifier">image_hash</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -162,7 +206,7 @@
 
 <pre>client.get_image({room_id: 123456, id: 1234})</pre>
 
-<p>@return the image information</p>
+<p>@return the image representation</p>
 
 <pre class="ruby">{
   <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1234</span>,
@@ -216,7 +260,7 @@
 
 <pre>client.get_image({room_id: 123456})</pre>
 
-<p>@return array with the images the room has assigned</p>
+<p>@return array of image representations</p>
 
 <pre class="ruby">[
   {
@@ -268,7 +312,7 @@
         
         <div class="method-heading">
           <span class="method-name">reorder_images</span><span
-            class="method-args">()</span>
+            class="method-args">(order_hash)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -277,14 +321,53 @@
 
         <div class="method-description">
           
-          
+          <p>Reorders images</p>
+
+<p>@example</p>
+
+<pre>client.reorder_images({room_id: 193117, images:[1235,1234]})</pre>
+
+<p>@example</p>
+
+<pre>client.reorder_images({room_id: 193117, images:&quot;1235,1234&quot;})</pre>
+
+<p>@return array of image representations</p>
+
+<pre class="ruby">[
+  {
+    <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1235</span>,
+    <span class="ruby-string">&quot;url&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230038/2230038_search_result.jpg&quot;</span>,
+    <span class="ruby-string">&quot;styles&quot;</span>=<span class="ruby-operator">&gt;</span>{
+      <span class="ruby-string">&quot;large&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230038/2230038_gallery.jpg&quot;</span>,
+      <span class="ruby-string">&quot;medium&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230038/2230038_medium.jpg&quot;</span>,
+      <span class="ruby-string">&quot;small&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230038/2230038_small.jpg&quot;</span>},
+    <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+    <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-10-22 10:35:23&quot;</span>,
+    <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-10-22 10:35:50&quot;</span>
+  }
+  {
+    <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1234</span>,
+    <span class="ruby-string">&quot;url&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_search_result.jpg&quot;</span>,
+    <span class="ruby-string">&quot;styles&quot;</span>=<span class="ruby-operator">&gt;</span>{
+      <span class="ruby-string">&quot;large&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_gallery.jpg&quot;</span>,
+      <span class="ruby-string">&quot;medium&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_medium.jpg&quot;</span>,
+      <span class="ruby-string">&quot;small&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_small.jpg&quot;</span>
+    },
+    <span class="ruby-string">&quot;caption&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Example caption&quot;</span>,
+    <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+    <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-10-22 06:33:59&quot;</span>,
+    <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-10-22 10:32:56&quot;</span>
+  }
+]
+</pre>
           
           
 
           
           <div class="method-source-code" id="reorder_images-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/host/images.rb, line 72</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">reorder_images</span>
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/images.rb, line 164</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reorder_images</span>(<span class="ruby-identifier">order_hash</span>)
+  <span class="ruby-identifier">auth_put</span>(<span class="ruby-identifier">host_images_url</span>(<span class="ruby-identifier">order_hash</span>), <span class="ruby-identifier">order_hash</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -309,13 +392,34 @@
 
         <div class="method-description">
           
-          
+          <p>Updates an image</p>
+
+<p>@example</p>
+
+<pre>client.update_image({room_id: 123456, id: 1234, caption: &quot;New caption&quot;})</pre>
+
+<p>@return the image representation</p>
+
+<pre class="ruby">{
+  <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1234</span>,
+  <span class="ruby-string">&quot;url&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_search_result.jpg&quot;</span>,
+  <span class="ruby-string">&quot;styles&quot;</span>=<span class="ruby-operator">&gt;</span>{
+    <span class="ruby-string">&quot;large&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_gallery.jpg&quot;</span>,
+    <span class="ruby-string">&quot;medium&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_medium.jpg&quot;</span>,
+    <span class="ruby-string">&quot;small&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;https://staging-assets.roomorama-cache.com/photos/rooms/2230036/2230036_small.jpg&quot;</span>
+  },
+  <span class="ruby-string">&quot;caption&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;New caption&quot;</span>,
+  <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-10-22 06:33:59&quot;</span>,
+  <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-10-22 10:32:56&quot;</span>
+}
+</pre>
           
           
 
           
           <div class="method-source-code" id="update_image-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/host/images.rb, line 68</span>
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/images.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_image</span>(<span class="ruby-identifier">image_hash</span>)
   <span class="ruby-identifier">auth_put</span>(<span class="ruby-identifier">host_image_url</span>(<span class="ruby-identifier">image_hash</span>), <span class="ruby-identifier">image_hash</span>)
 <span class="ruby-keyword">end</span></pre>
