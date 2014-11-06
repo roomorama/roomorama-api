@@ -36,6 +36,7 @@ module RoomoramaApi
 
     include RoomoramaApi::Host::Properties
     include RoomoramaApi::Host::Availabilities
+    include RoomoramaApi::Host::Images
 
     # method which builds endpoint's url
     # method can be used for builing Matrix of resource x action  x Version of API
@@ -67,7 +68,11 @@ module RoomoramaApi
     end
 
     def get_access_token
-      client = ::OAuth2::Client.new("", "", site: @config.base_url, raise_errors: false)
+      opts = {
+        site: @config.base_url,
+        raise_errors: false
+      }
+      client = ::OAuth2::Client.new("", "", opts)
       OAuth2::AccessToken.new(client, @config.token)
     end
 
@@ -80,11 +85,9 @@ module RoomoramaApi
       if method == :get
         raw_response = auth_token.send(method, url, params: attrs)
       else
-        raw_response = auth_token.send(method, url) {|req| req.body = attrs.to_json}
+        opts = { headers: {'Content-Type' => 'application/json'} }
+        raw_response = auth_token.send(method, url, opts) { |req| req.body = attrs.to_json }
       end
-
-
-      raw_response = (method == :get) ? auth_token.send(method, url, params: attrs) : auth_token.send(method, url) {|req| req.body = attrs.to_json}
       prepare_response(raw_response)
     end
 
@@ -104,7 +107,8 @@ module RoomoramaApi
 
     def parse_successful_response(response)
       json_response = parse_response(response)
-      json_response = json_response['response'] if json_response && json_response.is_a?(Hash) && json_response.has_key?('response')
+      return json_response['response'] if json_response && json_response.is_a?(Hash) && json_response.has_key?('response')
+      return json_response['result'] if json_response && json_response.is_a?(Hash) && json_response.has_key?('result')
       json_response
     end
 
@@ -115,7 +119,9 @@ module RoomoramaApi
     end
 
     def parse_response(response)
-      JSON.parse(response.response.body)
+      body = response.response.body.strip
+      return JSON.parse(response.response.body) unless body.empty?
+      true
     end
 
   end

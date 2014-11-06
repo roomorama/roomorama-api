@@ -1,3 +1,5 @@
 host_properties: "host/rooms"
 host_property: "host/rooms/%{id}"
 host_availabilities: "host/rooms/%{room_id}/availabilities"
+host_images: "host/rooms/%{room_id}/images"
+host_image: "host/rooms/%{room_id}/images/%{id}"
