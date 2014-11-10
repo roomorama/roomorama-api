@@ -49,8 +49,25 @@ module RoomoramaApi
       #
       # @example updates availabilities from 2014-10-04 to 2014-10-05
       #   client.update_availabilities({
-      #       room_id: 123456,
-      #       availabilities: [{
+      #     room_id: 123456,
+      #     availabilities: [{
+      #       start_date: '2014-10-04',
+      #       end_date: '2014-10-05',
+      #       available: true,
+      #       nightly_rate: 200,
+      #       weekly_rate: 1200
+      #       monthly_rate: 3500,
+      #       can_checkin: true,
+      #       can_checkout: true,
+      #       minimum_stay: 2
+      #     }]
+      #   })
+      #
+      # @example updates a single date and a range
+      #   client.update_availabilities({
+      #     room_id: 123456,
+      #     availabilities: [
+      #       {
       #         start_date: '2014-10-04',
       #         end_date: '2014-10-05',
       #         available: true,
@@ -60,35 +77,52 @@ module RoomoramaApi
       #         can_checkin: true,
       #         can_checkout: true,
       #         minimum_stay: 2
-      #       }]
+      #       },
+      #       {
+      #         date: '2014-10-06',
+      #         available: true,
+      #         nightly_rate: 250,
+      #         weekly_rate: 1400
+      #         monthly_rate: 4000,
+      #         can_checkin: true,
+      #         can_checkout: true,
+      #         minimum_stay: 1
+      #       }
+      #     ]
       #   })
       #
-      # @example updates a single date and a range
+      # @example skips the response. In case the response is not used, it can be skipped and the method will return faster.
       #   client.update_availabilities({
-      #       room_id: 123456,
-      #       availabilities: [
-      #         {
-      #           start_date: '2014-10-04',
-      #           end_date: '2014-10-05',
-      #           available: true,
-      #           nightly_rate: 200,
-      #           weekly_rate: 1200
-      #           monthly_rate: 3500,
-      #           can_checkin: true,
-      #           can_checkout: true,
-      #           minimum_stay: 2
-      #         },
-      #         {
-      #           date: '2014-10-06',
-      #           available: true,
-      #           nightly_rate: 250,
-      #           weekly_rate: 1400
-      #           monthly_rate: 4000,
-      #           can_checkin: true,
-      #           can_checkout: true,
-      #           minimum_stay: 1
-      #         }
-      #       ]
+      #     room_id: 123456,
+      #     return: :none,
+      #     availabilities: [{
+      #       start_date: '2014-10-04',
+      #       end_date: '2014-10-05',
+      #       available: true,
+      #       nightly_rate: 200,
+      #       weekly_rate: 1200
+      #       monthly_rate: 3500,
+      #       can_checkin: true,
+      #       can_checkout: true,
+      #       minimum_stay: 2
+      #     }]
+      #   })
+      #
+      # @example returns only the dates that were not updated.
+      #   client.update_availabilities({
+      #     room_id: 123456,
+      #     return: :errors,
+      #     availabilities: [{
+      #       start_date: '2014-10-04',
+      #       end_date: '2014-10-05',
+      #       available: true,
+      #       nightly_rate: 200,
+      #       weekly_rate: 1200
+      #       monthly_rate: 3500,
+      #       can_checkin: true,
+      #       can_checkout: true,
+      #       minimum_stay: 2
+      #     }]
       #   })
       #
       # @return the availability information updated
@@ -137,6 +171,8 @@ module RoomoramaApi
       #     }
       #   ]
       def update_availabilities(availabilities_hash)
+        response_type = availabilities_hash[:response] || 'successes'
+        url = "#{host_availabilities_url(availabilities_hash)}?return=#{response_type}"
         auth_put(host_availabilities_url(availabilities_hash), availabilities_hash[:availabilities])
       end
     end
