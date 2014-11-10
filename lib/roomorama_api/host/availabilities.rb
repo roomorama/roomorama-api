@@ -171,7 +171,7 @@ module RoomoramaApi
       #     }
       #   ]
       def update_availabilities(availabilities_hash)
-        response_type = availabilities_hash[:response] || 'successes'
+        response_type = availabilities_hash[:return] || :successes
         url = "#{host_availabilities_url(availabilities_hash)}?return=#{response_type}"
         auth_put(host_availabilities_url(availabilities_hash), availabilities_hash[:availabilities])
       end
