@@ -195,8 +195,26 @@
 <p>@example updates availabilities from 2014-10-04 to 2014-10-05</p>
 
 <pre>client.update_availabilities({
-    room_id: 123456,
-    availabilities: [{
+  room_id: 123456,
+  availabilities: [{
+    start_date: &#39;2014-10-04&#39;,
+    end_date: &#39;2014-10-05&#39;,
+    available: true,
+    nightly_rate: 200,
+    weekly_rate: 1200
+    monthly_rate: 3500,
+    can_checkin: true,
+    can_checkout: true,
+    minimum_stay: 2
+  }]
+})</pre>
+
+<p>@example updates a single date and a range</p>
+
+<pre>client.update_availabilities({
+  room_id: 123456,
+  availabilities: [
+    {
       start_date: &#39;2014-10-04&#39;,
       end_date: &#39;2014-10-05&#39;,
       available: true,
@@ -206,36 +224,55 @@
       can_checkin: true,
       can_checkout: true,
       minimum_stay: 2
-    }]
+    },
+    {
+      date: &#39;2014-10-06&#39;,
+      available: true,
+      nightly_rate: 250,
+      weekly_rate: 1400
+      monthly_rate: 4000,
+      can_checkin: true,
+      can_checkout: true,
+      minimum_stay: 1
+    }
+  ]
 })</pre>
 
-<p>@example updates a single date and a range</p>
+<p>@example skips the response. In case the response is not used, it can be
+skipped and the method will return faster.</p>
 
 <pre>client.update_availabilities({
-    room_id: 123456,
-    availabilities: [
-      {
-        start_date: &#39;2014-10-04&#39;,
-        end_date: &#39;2014-10-05&#39;,
-        available: true,
-        nightly_rate: 200,
-        weekly_rate: 1200
-        monthly_rate: 3500,
-        can_checkin: true,
-        can_checkout: true,
-        minimum_stay: 2
-      },
-      {
-        date: &#39;2014-10-06&#39;,
-        available: true,
-        nightly_rate: 250,
-        weekly_rate: 1400
-        monthly_rate: 4000,
-        can_checkin: true,
-        can_checkout: true,
-        minimum_stay: 1
-      }
-    ]
+  room_id: 123456,
+  return: :none,
+  availabilities: [{
+    start_date: &#39;2014-10-04&#39;,
+    end_date: &#39;2014-10-05&#39;,
+    available: true,
+    nightly_rate: 200,
+    weekly_rate: 1200
+    monthly_rate: 3500,
+    can_checkin: true,
+    can_checkout: true,
+    minimum_stay: 2
+  }]
+})</pre>
+
+<p>@example returns only the dates that were not updated.</p>
+
+<pre>client.update_availabilities({
+  room_id: 123456,
+  return: :errors,
+  availabilities: [{
+    start_date: &#39;2014-10-04&#39;,
+    end_date: &#39;2014-10-05&#39;,
+    available: true,
+    nightly_rate: 200,
+    weekly_rate: 1200
+    monthly_rate: 3500,
+    can_checkin: true,
+    can_checkout: true,
+    minimum_stay: 2
+  }]
 })</pre>
 
 <p>@return the availability information updated</p>
@@ -290,8 +327,10 @@
 
           
           <div class="method-source-code" id="update_availabilities-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/host/availabilities.rb, line 139</span>
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/availabilities.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_availabilities</span>(<span class="ruby-identifier">availabilities_hash</span>)
+  <span class="ruby-identifier">response_type</span> = <span class="ruby-identifier">availabilities_hash</span>[<span class="ruby-value">:response</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;successes&#39;</span>
+  <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{host_availabilities_url(availabilities_hash)}?return=#{response_type}&quot;</span>
   <span class="ruby-identifier">auth_put</span>(<span class="ruby-identifier">host_availabilities_url</span>(<span class="ruby-identifier">availabilities_hash</span>), <span class="ruby-identifier">availabilities_hash</span>[<span class="ruby-value">:availabilities</span>])
 <span class="ruby-keyword">end</span></pre>
           </div>
