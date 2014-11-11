@@ -10,7 +10,7 @@ module RoomoramaApi
       # @example returns availability information for 1 year ahead
       #   client.get_availabilities({room_id: 123456})
       #
-      # @returns
+      # @return
       #   [
       #     {
       #       "date"=>"2014-10-04",
