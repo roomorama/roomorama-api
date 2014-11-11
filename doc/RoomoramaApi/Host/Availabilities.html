@@ -127,7 +127,7 @@
 
 <pre>client.get_availabilities({room_id: 123456})</pre>
 
-<p>@returns</p>
+<p>@return</p>
 
 <pre class="ruby">[
   {
@@ -329,7 +329,7 @@ skipped and the method will return faster.</p>
           <div class="method-source-code" id="update_availabilities-source">
             <pre><span class="ruby-comment"># File lib/roomorama_api/host/availabilities.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_availabilities</span>(<span class="ruby-identifier">availabilities_hash</span>)
-  <span class="ruby-identifier">response_type</span> = <span class="ruby-identifier">availabilities_hash</span>[<span class="ruby-value">:response</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;successes&#39;</span>
+  <span class="ruby-identifier">response_type</span> = <span class="ruby-identifier">availabilities_hash</span>[<span class="ruby-value">:return</span>] <span class="ruby-operator">||</span> <span class="ruby-value">:successes</span>
   <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{host_availabilities_url(availabilities_hash)}?return=#{response_type}&quot;</span>
   <span class="ruby-identifier">auth_put</span>(<span class="ruby-identifier">host_availabilities_url</span>(<span class="ruby-identifier">availabilities_hash</span>), <span class="ruby-identifier">availabilities_hash</span>[<span class="ruby-value">:availabilities</span>])
 <span class="ruby-keyword">end</span></pre>
