@@ -455,8 +455,256 @@ module RoomoramaApi
       #     }
       #   }
       def update_property(property_hash)
-        property_url = host_property_url(property_hash)
-        auth_put(property_url, property_hash)
+        auth_put(host_property_url(property_hash), property_hash)
+      end
+
+      # Returns the units for a specified room
+      #
+      # @example
+      #   client.get_units({room_id: 193637})
+      #
+      # @return
+      #   [{
+      #     "id"=>19000,
+      #     "title"=>"Test unit",
+      #     "description"=>"This is a test unit",
+      #     "number_of_units"=>5,
+      #     "internal_id"=>nil,
+      #     "position"=>1,
+      #     "number_of_rooms"=>2,
+      #     "max_guests"=>5,
+      #     "minimum_stay"=>2,
+      #     "type"=>"apartment",
+      #     "subtype"=>nil,
+      #     "extra_guest_surcharge"=>15,
+      #     "smokingallowed"=>false,
+      #     "petsallowed"=>true,
+      #     "childrenwelcome"=>true,
+      #     "floor"=>"4",
+      #     "number_of_bathrooms"=>"2",
+      #     "number_of_double_beds"=>1,
+      #     "number_of_single_beds"=>2,
+      #     "number_of_sofa_beds"=>1,
+      #     "surface"=>200,
+      #     "amenities"=>[
+      #       "bed_linen_and_towels",
+      #       "kitchen",
+      #       "wifi",
+      #       "cabletv",
+      #       "airconditioning",
+      #       "pool",
+      #       "gym"
+      #     ],
+      #     "disabled"=>false,
+      #     "hidden"=>false,
+      #     "nightly_rate"=>50,
+      #     "weekly_rate"=>350,
+      #     "monthly_rate"=>1500,
+      #     "updated_at"=>"2014-11-11 06:22:46",
+      #     "created_at"=>"2014-11-11 06:22:46"
+      #   }]
+
+      def get_units(property_hash)
+        auth_get(host_units_url(property_hash))
+      end
+
+      # Returns the unit information
+      #
+      # @example
+      #   client.get_unit({room_id: 193637, id: 19000})
+      #
+      # @return
+      #   {
+      #     "id"=>19000,
+      #     "title"=>"Test unit",
+      #     "description"=>"This is a test unit",
+      #     "number_of_units"=>5,
+      #     "internal_id"=>nil,
+      #     "position"=>1,
+      #     "number_of_rooms"=>2,
+      #     "max_guests"=>5,
+      #     "minimum_stay"=>2,
+      #     "type"=>"apartment",
+      #     "subtype"=>nil,
+      #     "extra_guest_surcharge"=>15,
+      #     "smokingallowed"=>false,
+      #     "petsallowed"=>true,
+      #     "childrenwelcome"=>true,
+      #     "floor"=>"4",
+      #     "number_of_bathrooms"=>"2",
+      #     "number_of_double_beds"=>1,
+      #     "number_of_single_beds"=>2,
+      #     "number_of_sofa_beds"=>1,
+      #     "surface"=>200,
+      #     "amenities"=>[
+      #       "bed_linen_and_towels",
+      #       "kitchen",
+      #       "wifi",
+      #       "cabletv",
+      #       "airconditioning",
+      #       "pool",
+      #       "gym"
+      #     ],
+      #     "disabled"=>false,
+      #     "hidden"=>false,
+      #     "nightly_rate"=>50,
+      #     "weekly_rate"=>350,
+      #     "monthly_rate"=>1500,
+      #     "updated_at"=>"2014-11-11 06:22:46",
+      #     "created_at"=>"2014-11-11 06:22:46"
+      #   }
+
+      def get_unit(property_unit_hash)
+        auth_get(host_unit_url(property_unit_hash))
+      end
+
+      # Creates a unit in a specified room (the room provided must be a multi-unit room)
+      #
+      # @example
+      #   client.create_unit({
+      #     room_id: 193637,
+      #     title: "Test unit",
+      #     nightly_rate: 50,
+      #     weekly_rate: 350,
+      #     monthly_rate: 1500,
+      #     number_of_rooms: 2,
+      #     number_of_units: 5,
+      #     type: "apartment",
+      #     description: "This is a test unit",
+      #     number_of_bathrooms: "2",
+      #     floor: "4",
+      #     number_of_double_beds: 1,
+      #     number_of_single_beds: 2,
+      #     number_of_sofa_beds: 1,
+      #     surface: 200,
+      #     amenities: "bed_linen_and_towels,kitchen,wifi,cabletv,airconditioning,pool,gym",
+      #     max_guests: 5,
+      #     minimum_stay: 2,
+      #     smokingallowed: false,
+      #     petsallowed: true,
+      #     childrenwelcome: true,
+      #     tax_rate: 2.5,
+      #     extra_guest_surcharge: 15,
+      #     disabled: false
+      #   })
+      #
+      # @return
+      #   {
+      #     "id"=>19000,
+      #     "title"=>"Test unit",
+      #     "description"=>"This is a test unit",
+      #     "number_of_units"=>5,
+      #     "internal_id"=>nil,
+      #     "position"=>1,
+      #     "number_of_rooms"=>2,
+      #     "max_guests"=>5,
+      #     "minimum_stay"=>2,
+      #     "type"=>"apartment",
+      #     "subtype"=>nil,
+      #     "extra_guest_surcharge"=>15,
+      #     "smokingallowed"=>false,
+      #     "petsallowed"=>true,
+      #     "childrenwelcome"=>true,
+      #     "floor"=>"4",
+      #     "number_of_bathrooms"=>"2",
+      #     "number_of_double_beds"=>1,
+      #     "number_of_single_beds"=>2,
+      #     "number_of_sofa_beds"=>1,
+      #     "surface"=>200,
+      #     "amenities"=>[
+      #       "bed_linen_and_towels",
+      #       "kitchen",
+      #       "wifi",
+      #       "cabletv",
+      #       "airconditioning",
+      #       "pool",
+      #       "gym"
+      #     ],
+      #     "disabled"=>false,
+      #     "hidden"=>false,
+      #     "nightly_rate"=>50,
+      #     "weekly_rate"=>350,
+      #     "monthly_rate"=>1500,
+      #     "updated_at"=>"2014-11-11 06:22:46",
+      #     "created_at"=>"2014-11-11 06:22:46"
+      #   }
+      def create_unit(unit_hash)
+        auth_post(host_units_url(unit_hash), unit_hash)
+      end
+
+     # Creates a unit in a specified room (the room provided must be a multi-unit room)
+      #
+      # @example
+      #   client.update_unit({
+      #     room_id: 193637,
+      #     id: 19000,
+      #     title: "Test unit (updated)",
+      #     nightly_rate: 51,
+      #     weekly_rate: 351,
+      #     monthly_rate: 1501,
+      #     number_of_rooms: 3,
+      #     number_of_units: 4,
+      #     type: "apartment",
+      #     description: "This is a test unit (updated)",
+      #     number_of_bathrooms: "1",
+      #     floor: "3",
+      #     number_of_double_beds: 2,
+      #     number_of_single_beds: 1,
+      #     number_of_sofa_beds: 2,
+      #     surface: 201,
+      #     amenities: "bed_linen_and_towels,kitchen,wifi,cabletv,airconditioning,pool,breakfast",
+      #     max_guests: 6,
+      #     minimum_stay: 1,
+      #     smokingallowed: true,
+      #     petsallowed: true,
+      #     childrenwelcome: true,
+      #     tax_rate: 2.6,
+      #     extra_guest_surcharge: 16,
+      #     disabled: false
+      #   })
+      #
+      # @return
+      #   {
+      #     "id"=>19000,
+      #     "title"=>"Test unit (updated)",
+      #     "description"=>"This is a test unit (updated)",
+      #     "number_of_units"=>4,
+      #     "internal_id"=>nil,
+      #     "position"=>1,
+      #     "number_of_rooms"=>3,
+      #     "max_guests"=>6,
+      #     "minimum_stay"=>1,
+      #     "type"=>"apartment",
+      #     "subtype"=>nil,
+      #     "extra_guest_surcharge"=>16,
+      #     "smokingallowed"=>true,
+      #     "petsallowed"=>true,
+      #     "childrenwelcome"=>true,
+      #     "floor"=>"3",
+      #     "number_of_bathrooms"=>"1",
+      #     "number_of_double_beds"=>2,
+      #     "number_of_single_beds"=>1,
+      #     "number_of_sofa_beds"=>2,
+      #     "surface"=>201,
+      #     "amenities"=>[
+      #       "bed_linen_and_towels",
+      #       "kitchen",
+      #       "wifi",
+      #       "cabletv",
+      #       "airconditioning",
+      #       "pool",
+      #       "breakfast"
+      #     ],
+      #     "disabled"=>false,
+      #     "hidden"=>false,
+      #     "nightly_rate"=>51,
+      #     "weekly_rate"=>351,
+      #     "monthly_rate"=>1501,
+      #     "updated_at"=>"2014-11-11 06:47:30",
+      #     "created_at"=>"2014-11-11 06:22:46"
+      #   }
+      def update_unit(property_unit_hash)
+        auth_put(host_unit_url(property_unit_hash), property_unit_hash)
       end
 
     end

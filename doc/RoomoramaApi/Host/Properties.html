@@ -68,11 +68,19 @@
     
     <li ><a href="#method-i-create_property">#create_property</a>
     
+    <li ><a href="#method-i-create_unit">#create_unit</a>
+    
     <li ><a href="#method-i-get_properties">#get_properties</a>
     
     <li ><a href="#method-i-get_property">#get_property</a>
     
+    <li ><a href="#method-i-get_unit">#get_unit</a>
+    
+    <li ><a href="#method-i-get_units">#get_units</a>
+    
     <li ><a href="#method-i-update_property">#update_property</a>
+    
+    <li ><a href="#method-i-update_unit">#update_unit</a>
     
   </ul>
 </div>
@@ -261,6 +269,112 @@
             <pre><span class="ruby-comment"># File lib/roomorama_api/host/properties.rb, line 323</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_property</span>(<span class="ruby-identifier">property_hash</span>)
   <span class="ruby-identifier">auth_post</span>(<span class="ruby-identifier">host_properties_url</span>, <span class="ruby-identifier">property_hash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_unit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_unit</span><span
+            class="method-args">(unit_hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a unit in a specified room (the room provided must be a multi-unit
+room)</p>
+
+<p>@example</p>
+
+<pre>client.create_unit({
+  room_id: 193637,
+  title: &quot;Test unit&quot;,
+  nightly_rate: 50,
+  weekly_rate: 350,
+  monthly_rate: 1500,
+  number_of_rooms: 2,
+  number_of_units: 5,
+  type: &quot;apartment&quot;,
+  description: &quot;This is a test unit&quot;,
+  number_of_bathrooms: &quot;2&quot;,
+  floor: &quot;4&quot;,
+  number_of_double_beds: 1,
+  number_of_single_beds: 2,
+  number_of_sofa_beds: 1,
+  surface: 200,
+  amenities: &quot;bed_linen_and_towels,kitchen,wifi,cabletv,airconditioning,pool,gym&quot;,
+  max_guests: 5,
+  minimum_stay: 2,
+  smokingallowed: false,
+  petsallowed: true,
+  childrenwelcome: true,
+  tax_rate: 2.5,
+  extra_guest_surcharge: 15,
+  disabled: false
+})</pre>
+
+<p>@return</p>
+
+<pre class="ruby">{
+  <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">19000</span>,
+  <span class="ruby-string">&quot;title&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Test unit&quot;</span>,
+  <span class="ruby-string">&quot;description&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;This is a test unit&quot;</span>,
+  <span class="ruby-string">&quot;number_of_units&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">5</span>,
+  <span class="ruby-string">&quot;internal_id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_rooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;max_guests&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">5</span>,
+  <span class="ruby-string">&quot;minimum_stay&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;type&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;apartment&quot;</span>,
+  <span class="ruby-string">&quot;subtype&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;extra_guest_surcharge&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">15</span>,
+  <span class="ruby-string">&quot;smokingallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;petsallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;childrenwelcome&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;floor&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;4&quot;</span>,
+  <span class="ruby-string">&quot;number_of_bathrooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2&quot;</span>,
+  <span class="ruby-string">&quot;number_of_double_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_single_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;number_of_sofa_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;surface&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">200</span>,
+  <span class="ruby-string">&quot;amenities&quot;</span>=<span class="ruby-operator">&gt;</span>[
+    <span class="ruby-string">&quot;bed_linen_and_towels&quot;</span>,
+    <span class="ruby-string">&quot;kitchen&quot;</span>,
+    <span class="ruby-string">&quot;wifi&quot;</span>,
+    <span class="ruby-string">&quot;cabletv&quot;</span>,
+    <span class="ruby-string">&quot;airconditioning&quot;</span>,
+    <span class="ruby-string">&quot;pool&quot;</span>,
+    <span class="ruby-string">&quot;gym&quot;</span>
+  ],
+  <span class="ruby-string">&quot;disabled&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;hidden&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;nightly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">50</span>,
+  <span class="ruby-string">&quot;weekly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">350</span>,
+  <span class="ruby-string">&quot;monthly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1500</span>,
+  <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:22:46&quot;</span>,
+  <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:22:46&quot;</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="create_unit-source">
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/properties.rb, line 631</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_unit</span>(<span class="ruby-identifier">unit_hash</span>)
+  <span class="ruby-identifier">auth_post</span>(<span class="ruby-identifier">host_units_url</span>(<span class="ruby-identifier">unit_hash</span>), <span class="ruby-identifier">unit_hash</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -523,6 +637,166 @@
       </div>
 
     
+      <div id="method-i-get_unit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_unit</span><span
+            class="method-args">(property_unit_hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the unit information</p>
+
+<p>@example</p>
+
+<pre>client.get_unit({room_id: 193637, id: 19000})</pre>
+
+<p>@return</p>
+
+<pre class="ruby">{
+  <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">19000</span>,
+  <span class="ruby-string">&quot;title&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Test unit&quot;</span>,
+  <span class="ruby-string">&quot;description&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;This is a test unit&quot;</span>,
+  <span class="ruby-string">&quot;number_of_units&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">5</span>,
+  <span class="ruby-string">&quot;internal_id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_rooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;max_guests&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">5</span>,
+  <span class="ruby-string">&quot;minimum_stay&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;type&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;apartment&quot;</span>,
+  <span class="ruby-string">&quot;subtype&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;extra_guest_surcharge&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">15</span>,
+  <span class="ruby-string">&quot;smokingallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;petsallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;childrenwelcome&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;floor&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;4&quot;</span>,
+  <span class="ruby-string">&quot;number_of_bathrooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2&quot;</span>,
+  <span class="ruby-string">&quot;number_of_double_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_single_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;number_of_sofa_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;surface&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">200</span>,
+  <span class="ruby-string">&quot;amenities&quot;</span>=<span class="ruby-operator">&gt;</span>[
+    <span class="ruby-string">&quot;bed_linen_and_towels&quot;</span>,
+    <span class="ruby-string">&quot;kitchen&quot;</span>,
+    <span class="ruby-string">&quot;wifi&quot;</span>,
+    <span class="ruby-string">&quot;cabletv&quot;</span>,
+    <span class="ruby-string">&quot;airconditioning&quot;</span>,
+    <span class="ruby-string">&quot;pool&quot;</span>,
+    <span class="ruby-string">&quot;gym&quot;</span>
+  ],
+  <span class="ruby-string">&quot;disabled&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;hidden&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;nightly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">50</span>,
+  <span class="ruby-string">&quot;weekly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">350</span>,
+  <span class="ruby-string">&quot;monthly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1500</span>,
+  <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:22:46&quot;</span>,
+  <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:22:46&quot;</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="get_unit-source">
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/properties.rb, line 557</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_unit</span>(<span class="ruby-identifier">property_unit_hash</span>)
+  <span class="ruby-identifier">auth_get</span>(<span class="ruby-identifier">host_unit_url</span>(<span class="ruby-identifier">property_unit_hash</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_units" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_units</span><span
+            class="method-args">(property_hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the units for a specified room</p>
+
+<p>@example</p>
+
+<pre>client.get_units({room_id: 193637})</pre>
+
+<p>@return</p>
+
+<pre class="ruby">[{
+  <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">19000</span>,
+  <span class="ruby-string">&quot;title&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Test unit&quot;</span>,
+  <span class="ruby-string">&quot;description&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;This is a test unit&quot;</span>,
+  <span class="ruby-string">&quot;number_of_units&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">5</span>,
+  <span class="ruby-string">&quot;internal_id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_rooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;max_guests&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">5</span>,
+  <span class="ruby-string">&quot;minimum_stay&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;type&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;apartment&quot;</span>,
+  <span class="ruby-string">&quot;subtype&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;extra_guest_surcharge&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">15</span>,
+  <span class="ruby-string">&quot;smokingallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;petsallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;childrenwelcome&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;floor&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;4&quot;</span>,
+  <span class="ruby-string">&quot;number_of_bathrooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2&quot;</span>,
+  <span class="ruby-string">&quot;number_of_double_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_single_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;number_of_sofa_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;surface&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">200</span>,
+  <span class="ruby-string">&quot;amenities&quot;</span>=<span class="ruby-operator">&gt;</span>[
+    <span class="ruby-string">&quot;bed_linen_and_towels&quot;</span>,
+    <span class="ruby-string">&quot;kitchen&quot;</span>,
+    <span class="ruby-string">&quot;wifi&quot;</span>,
+    <span class="ruby-string">&quot;cabletv&quot;</span>,
+    <span class="ruby-string">&quot;airconditioning&quot;</span>,
+    <span class="ruby-string">&quot;pool&quot;</span>,
+    <span class="ruby-string">&quot;gym&quot;</span>
+  ],
+  <span class="ruby-string">&quot;disabled&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;hidden&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;nightly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">50</span>,
+  <span class="ruby-string">&quot;weekly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">350</span>,
+  <span class="ruby-string">&quot;monthly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1500</span>,
+  <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:22:46&quot;</span>,
+  <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:22:46&quot;</span>
+}]
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="get_units-source">
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/properties.rb, line 507</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_units</span>(<span class="ruby-identifier">property_hash</span>)
+  <span class="ruby-identifier">auth_get</span>(<span class="ruby-identifier">host_units_url</span>(<span class="ruby-identifier">property_hash</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-update_property" class="method-detail ">
         
         <div class="method-heading">
@@ -676,8 +950,114 @@
           <div class="method-source-code" id="update_property-source">
             <pre><span class="ruby-comment"># File lib/roomorama_api/host/properties.rb, line 457</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_property</span>(<span class="ruby-identifier">property_hash</span>)
-  <span class="ruby-identifier">property_url</span> = <span class="ruby-identifier">host_property_url</span>(<span class="ruby-identifier">property_hash</span>)
-  <span class="ruby-identifier">auth_put</span>(<span class="ruby-identifier">property_url</span>, <span class="ruby-identifier">property_hash</span>)
+  <span class="ruby-identifier">auth_put</span>(<span class="ruby-identifier">host_property_url</span>(<span class="ruby-identifier">property_hash</span>), <span class="ruby-identifier">property_hash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_unit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_unit</span><span
+            class="method-args">(property_unit_hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a unit in a specified room (the room provided must be a multi-unit
+room)</p>
+
+<p>@example</p>
+
+<pre>client.update_unit({
+  room_id: 193637,
+  id: 19000,
+  title: &quot;Test unit (updated)&quot;,
+  nightly_rate: 51,
+  weekly_rate: 351,
+  monthly_rate: 1501,
+  number_of_rooms: 3,
+  number_of_units: 4,
+  type: &quot;apartment&quot;,
+  description: &quot;This is a test unit (updated)&quot;,
+  number_of_bathrooms: &quot;1&quot;,
+  floor: &quot;3&quot;,
+  number_of_double_beds: 2,
+  number_of_single_beds: 1,
+  number_of_sofa_beds: 2,
+  surface: 201,
+  amenities: &quot;bed_linen_and_towels,kitchen,wifi,cabletv,airconditioning,pool,breakfast&quot;,
+  max_guests: 6,
+  minimum_stay: 1,
+  smokingallowed: true,
+  petsallowed: true,
+  childrenwelcome: true,
+  tax_rate: 2.6,
+  extra_guest_surcharge: 16,
+  disabled: false
+})</pre>
+
+<p>@return</p>
+
+<pre class="ruby">{
+  <span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">19000</span>,
+  <span class="ruby-string">&quot;title&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Test unit (updated)&quot;</span>,
+  <span class="ruby-string">&quot;description&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;This is a test unit (updated)&quot;</span>,
+  <span class="ruby-string">&quot;number_of_units&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">4</span>,
+  <span class="ruby-string">&quot;internal_id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;position&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_rooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">3</span>,
+  <span class="ruby-string">&quot;max_guests&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">6</span>,
+  <span class="ruby-string">&quot;minimum_stay&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;type&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;apartment&quot;</span>,
+  <span class="ruby-string">&quot;subtype&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&quot;extra_guest_surcharge&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">16</span>,
+  <span class="ruby-string">&quot;smokingallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;petsallowed&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;childrenwelcome&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,
+  <span class="ruby-string">&quot;floor&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;3&quot;</span>,
+  <span class="ruby-string">&quot;number_of_bathrooms&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;1&quot;</span>,
+  <span class="ruby-string">&quot;number_of_double_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;number_of_single_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>,
+  <span class="ruby-string">&quot;number_of_sofa_beds&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">2</span>,
+  <span class="ruby-string">&quot;surface&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">201</span>,
+  <span class="ruby-string">&quot;amenities&quot;</span>=<span class="ruby-operator">&gt;</span>[
+    <span class="ruby-string">&quot;bed_linen_and_towels&quot;</span>,
+    <span class="ruby-string">&quot;kitchen&quot;</span>,
+    <span class="ruby-string">&quot;wifi&quot;</span>,
+    <span class="ruby-string">&quot;cabletv&quot;</span>,
+    <span class="ruby-string">&quot;airconditioning&quot;</span>,
+    <span class="ruby-string">&quot;pool&quot;</span>,
+    <span class="ruby-string">&quot;breakfast&quot;</span>
+  ],
+  <span class="ruby-string">&quot;disabled&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;hidden&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,
+  <span class="ruby-string">&quot;nightly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">51</span>,
+  <span class="ruby-string">&quot;weekly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">351</span>,
+  <span class="ruby-string">&quot;monthly_rate&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value">1501</span>,
+  <span class="ruby-string">&quot;updated_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:47:30&quot;</span>,
+  <span class="ruby-string">&quot;created_at&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2014-11-11 06:22:46&quot;</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="update_unit-source">
+            <pre><span class="ruby-comment"># File lib/roomorama_api/host/properties.rb, line 706</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_unit</span>(<span class="ruby-identifier">property_unit_hash</span>)
+  <span class="ruby-identifier">auth_put</span>(<span class="ruby-identifier">host_unit_url</span>(<span class="ruby-identifier">property_unit_hash</span>), <span class="ruby-identifier">property_unit_hash</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -1,8 +1,8 @@
-Tue, 11 Nov 2014 12:11:22 +0800
+Tue, 11 Nov 2014 15:05:02 +0800
 lib/roomorama_api.rb	Thu, 06 Nov 2014 15:58:54 +0800
 lib/roomorama_api/client.rb	Thu, 06 Nov 2014 15:58:54 +0800
 lib/roomorama_api/config.rb	Mon, 03 Nov 2014 16:06:07 +0800
-lib/roomorama_api/host/availabilities.rb	Tue, 11 Nov 2014 10:28:33 +0800
-lib/roomorama_api/host/properties.rb	Tue, 11 Nov 2014 12:10:31 +0800
-lib/roomorama_api/routes.yml	Thu, 06 Nov 2014 15:58:54 +0800
+lib/roomorama_api/host/availabilities.rb	Tue, 11 Nov 2014 13:48:49 +0800
+lib/roomorama_api/host/properties.rb	Tue, 11 Nov 2014 15:04:28 +0800
+lib/roomorama_api/routes.yml	Tue, 11 Nov 2014 13:59:50 +0800
 lib/roomorama_api/host/images.rb	Thu, 06 Nov 2014 15:58:54 +0800
