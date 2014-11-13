@@ -1,33 +1,40 @@
-### Roomorama API
+# Roomorama API
 
-Wrapper which allows in easy way to make a http call to Roomorama API
+Ruby wrapper library to consume Roomorama's [API 1.0](https://www.roomorama.com/api/v1_0)
 
-## RoomoramaApi::Client
-
-#### Setup
-
-
-In order to pass credentials about partner's user we can use
- #setup method
+## Usage
 
 ```ruby
-  client = RoomoramaApi::Client.setup do |config|
-    config.client_id     = 7
-    config.client_secret = 'fake_client_secret'
-    config.token         = 'fake_authentication_token'
-  end
+client = RoomoramaApi::Client.setup { |config| config.token = 'Your OAuth token' }
 ```
 
+## Covered methods
 
-#### OAuth::AccessToken
-
-Client object allows us to get OAuth::AccessToken, authenticated with passed during configuration credentials.
+### Properties
 
 ```ruby
-  auth_token = client.auth_token
-  auth_token.post("/v1.0/me.json")
-  
-  auth.post(create_room_url)
+client.get_properties
+client.get_property(property_hash)
+client.create_property(property_hash)
+client.update_property(property_hash)
+client.get_units(property_hash)
+client.get_unit(property_unit_hash)
+client.create_unit(unit_hash)
+client.update_unit(property_unit_hash)
+```
+### Availabilities
+
+```ruby
+client.get_availabilities(selection_hash)
+client.update_availabilities(availabilities_hash)
 ```
 
+### Images
 
+```ruby
+client.get_images(room_hash)
+client.get_image(image_hash)
+client.create_image(image_hash)
+client.update_image(image_hash)
+client.reorder_images(order_hash)
+```

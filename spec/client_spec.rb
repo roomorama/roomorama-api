@@ -80,25 +80,6 @@ describe "Roomorama API" do
       end
     end
 
-    describe "#create_property" do
-      it "responds to create_room" do
-        expect( roomorama_client ).to respond_to(:create_property)
-      end
-
-      it "recieve Status 200 for valid params" do
-        allow( roomorama_client ).to receive(:create_room).and_return( {status: 200}  )
-        expect( roomorama_client.create_room[:status] ).to eql( 200 )
-      end
-    end
-
-    describe "#index_property" do
-      # VCR response
-      it "returns API response " do
-         allow( roomorama_client ).to receive(:index_room).and_return( 'snapshot from VCR' )
-         expect( roomorama_client.index_room ).to be_kind_of( String )
-      end
-    end
-
     it "builds host_properties_url" do
       expect( roomorama_client.send(:host_properties_url) ).to eql("https://api.staging.roomorama.com/v1.0/host/rooms.json")
     end
