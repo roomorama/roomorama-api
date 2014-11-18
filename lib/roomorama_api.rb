@@ -1,6 +1,6 @@
 require 'active_model'
 require 'oauth2'
-require 'JSON'
+require 'json'
 
 require_relative 'roomorama_api/host/properties'
 require_relative 'roomorama_api/host/availabilities'
