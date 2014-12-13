@@ -17,6 +17,7 @@ module RoomoramaApi
   class EndpointNotImplemented < Error ; end
 
   class UnauthorizedRequest < Error ; end
+  class NotFound < Error ; end
   class ApiNotResponding < Error ; end
   class InvalidRequest < Error ; end
   class UnexpectedResponse < Error ; end
