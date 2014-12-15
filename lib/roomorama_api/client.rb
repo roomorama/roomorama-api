@@ -95,6 +95,7 @@ module RoomoramaApi
       case response.status
       when 200..206 then parse_successful_response(response)
       when 401 then raise UnauthorizedRequest
+      when 404 then raise NotFound
       when 422
         error_response = parse_invalid_response(response)
         error_response = error_response.presence || 'Received empty response from API'
