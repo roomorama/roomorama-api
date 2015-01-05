@@ -3,7 +3,7 @@ require "spec_helper"
 describe "Roomorama API" do
 
   describe "Client" do
-    let(:roomorama_client){ RoomoramaApi::Client.new }
+    let(:roomorama_client){ RoomoramaApi::Client.setup { |config| config.base_url = "https://api.staging.roomorama.com" } }
     it "implement client" do
       expect( roomorama_client ).to be_instance_of( RoomoramaApi::Client )
     end
