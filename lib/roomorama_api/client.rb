@@ -3,7 +3,11 @@ module RoomoramaApi
   class Client
     include ::ActiveModel::AttributeMethods
 
-    END_POINTS = YAML::load(File.open(File.join(__dir__, 'routes.yml')))
+    CONFIG_END_POINTS = YAML::load(File.open(File.join(__dir__, 'routes.yml')))
+
+    END_POINTS_V1_0 = CONFIG_END_POINTS["v1_0"]
+    END_POINTS_V2_0 = CONFIG_END_POINTS["v2_0"]
+    END_POINTS = END_POINTS_V1_0.merge(END_POINTS_V2_0)
 
     attribute_method_suffix :_url
     define_attribute_methods END_POINTS.keys
@@ -46,10 +50,12 @@ module RoomoramaApi
     # @example:
     #   roomorama_client.create_property_url
     #
-    def attribute_url(attribute, hash = nil)
+    def attribute_url(attribute, hash = {})
       end_point = END_POINTS[attribute]
+      api_version = @config.api_version
+      api_version = "v2.0" if END_POINTS_V2_0.has_key? attribute
       raise EndpointNotImplemented unless end_point
-      url = "#{@config.base_url}/#{@config.api_version}/#{end_point}.json"
+      url = "#{@config.base_url}/#{api_version}/#{end_point}.json"
       hash ? (url % hash) : url
     end
 

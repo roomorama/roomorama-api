@@ -20,6 +20,7 @@ describe "Roomorama API" do
       it { is_expected.to respond_to(:update_property) }
       it { is_expected.to respond_to(:get_properties) }
       it { is_expected.to respond_to(:get_property) }
+      it { is_expected.to respond_to(:set_instantly_available) }
       it { is_expected.to respond_to(:get_availabilities) }
       it { is_expected.to respond_to(:update_availabilities) }
       it { is_expected.to respond_to(:get_images) }
@@ -98,6 +99,10 @@ describe "Roomorama API" do
 
     it "builds host_image_url" do
       expect( roomorama_client.send(:host_image_url, {room_id: 1, id: 1}) ).to eql("https://api.staging.roomorama.com/v1.0/host/rooms/1/images/1.json")
+    end
+
+    it "builds host_instantly_available" do
+      expect( roomorama_client.send(:host_instantly_available_url, {room_id: 1, api_version: "v2.0"})).to eql("https://api.staging.roomorama.com/v2.0/host/rooms/1/instant.json")
     end
 
     describe "#prepare_response" do

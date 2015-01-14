@@ -458,6 +458,26 @@ module RoomoramaApi
         auth_put(host_property_url(property_hash), property_hash)
       end
 
+      # Sets a property as instantly available
+      #
+      # @example
+      #   client.set_instantly_available({
+      #     room_id: 193636,
+      #     instantly_available: true
+      #   })
+      #
+      # @return
+      #   {
+      #     "id"=>193636,
+      #     "instant_booking"=>true
+      #   }
+      def set_instantly_available(property_hash)
+        property_hash.merge(api_version: "v2.0")
+        instantly_available = property_hash.fetch(:instantly_available)
+        url = host_instantly_available_url(property_hash)
+        instantly_available ? auth_post(url) : auth_delete(url)
+      end
+
       # Returns the units for a specified room
       #
       # @example
