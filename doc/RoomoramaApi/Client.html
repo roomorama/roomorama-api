@@ -6,19 +6,16 @@
 
 <title>class RoomoramaApi::Client - RDoc Documentation</title>
 
-<link href="../fonts.css" rel="stylesheet">
-<link href="../rdoc.css" rel="stylesheet">
-
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
 </script>
 
 <script src="../js/jquery.js"></script>
-<script src="../js/navigation.js"></script>
-<script src="../js/search_index.js"></script>
-<script src="../js/search.js"></script>
-<script src="../js/searcher.js"></script>
 <script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="class">
@@ -96,11 +93,13 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-configuration">::configuration</a>
+    
     <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-attribute_url">#attribute_url</a>
+    <li ><a href="#method-c-setup">::setup</a>
     
-    <li ><a href="#method-i-configuration">#configuration</a>
+    <li ><a href="#method-i-attribute_url">#attribute_url</a>
     
   </ul>
 </div>
@@ -132,7 +131,22 @@
       </header>
       <dl>
       
+        <dt id="CONFIG_END_POINTS">CONFIG_END_POINTS
+        
+        <dd>
+        
+      
         <dt id="END_POINTS">END_POINTS
+        
+        <dd>
+        
+      
+        <dt id="END_POINTS_V1_0">END_POINTS_V1_0
+        
+        <dd>
+        
+      
+        <dt id="END_POINTS_V2_0">END_POINTS_V2_0
         
         <dd>
         
@@ -197,6 +211,47 @@
        </header>
 
     
+      <div id="method-c-configuration" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">configuration</span><span
+            class="method-args">() { |config| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="configuration-source">
+            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">configuration</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">config</span> = <span class="ruby-constant">RoomoramaApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">config</span>)
+    <span class="ruby-identifier">client</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">config</span> )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Client.html#method-c-setup">setup</a>
+        </div>
+        
+
+        
+      </div>
+
+    
       <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
@@ -216,7 +271,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 14</span>
+            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">config</span> = <span class="ruby-keyword">nil</span> )
   <span class="ruby-ivar">@config</span> = <span class="ruby-identifier">config</span> <span class="ruby-operator">||</span> <span class="ruby-constant">RoomoramaApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -226,6 +281,34 @@
 
         
 
+        
+      </div>
+
+    
+      <div id="method-c-setup" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">setup</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Client.html#method-c-configuration">configuration</a>
+        </div>
         
       </div>
 
@@ -242,7 +325,7 @@
         
         <div class="method-heading">
           <span class="method-name">attribute_url</span><span
-            class="method-args">(attribute, hash = nil)</span>
+            class="method-args">(attribute, hash = {})</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -259,55 +342,21 @@ href="https://api.staging.roomorama.com/v1.0/host/rooms">api.staging.roomorama.c
 
 <p>@example:</p>
 
-<pre>roomorama_client.create_property_url</pre>
+<pre class="ruby"><span class="ruby-identifier">roomorama_client</span>.<span class="ruby-identifier">create_property_url</span>
+</pre>
           
           
 
           
           <div class="method-source-code" id="attribute_url-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 49</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">attribute_url</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">hash</span> = <span class="ruby-keyword">nil</span>)
+            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">attribute_url</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">hash</span> = {})
   <span class="ruby-identifier">end_point</span> = <span class="ruby-constant">END_POINTS</span>[<span class="ruby-identifier">attribute</span>]
+  <span class="ruby-identifier">api_version</span> = <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">api_version</span>
+  <span class="ruby-identifier">api_version</span> = <span class="ruby-string">&quot;v2.0&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">END_POINTS_V2_0</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">attribute</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">EndpointNotImplemented</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">end_point</span>
-  <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{@config.base_url}/#{@config.api_version}/#{end_point}.json&quot;</span>
+  <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{@config.base_url}/#{api_version}/#{end_point}.json&quot;</span>
   <span class="ruby-identifier">hash</span> <span class="ruby-operator">?</span> (<span class="ruby-identifier">url</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">hash</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-configuration" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">configuration</span><span
-            class="method-args">() { |config| ... }</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="configuration-source">
-            <pre><span class="ruby-comment"># File lib/roomorama_api/client.rb, line 26</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">configuration</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
-    <span class="ruby-identifier">config</span> = <span class="ruby-constant">RoomoramaApi</span><span class="ruby-operator">::</span><span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>
-    <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">config</span>)
-    <span class="ruby-identifier">client</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">config</span> )
-  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -327,7 +376,7 @@ href="https://api.staging.roomorama.com/v1.0/host/rooms">api.staging.roomorama.c
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
