@@ -17,6 +17,7 @@ client.get_properties
 client.get_property(property_hash)
 client.create_property(property_hash)
 client.update_property(property_hash)
+client.set_instantly_available(property_hash)
 client.get_units(property_hash)
 client.get_unit(property_unit_hash)
 client.create_unit(unit_hash)
