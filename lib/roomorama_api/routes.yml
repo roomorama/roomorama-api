@@ -1,7 +1,11 @@
-host_properties: "host/rooms"
-host_property: "host/rooms/%{id}"
-host_availabilities: "host/rooms/%{room_id}/availabilities"
-host_images: "host/rooms/%{room_id}/images"
-host_image: "host/rooms/%{room_id}/images/%{id}"
-host_units: "host/rooms/%{room_id}/units"
-host_unit: "host/rooms/%{room_id}/units/%{id}"
+v1_0:
+  host_properties: "host/rooms"
+  host_property: "host/rooms/%{id}"
+  host_availabilities: "host/rooms/%{room_id}/availabilities"
+  host_images: "host/rooms/%{room_id}/images"
+  host_image: "host/rooms/%{room_id}/images/%{id}"
+  host_units: "host/rooms/%{room_id}/units"
+  host_unit: "host/rooms/%{room_id}/units/%{id}"
+
+v2_0:
+  host_instantly_available: "host/rooms/%{room_id}/instant"
