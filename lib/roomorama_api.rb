@@ -12,14 +12,22 @@ require_relative 'roomorama_api/client'
 
 module RoomoramaApi
 
-  class Error < RuntimeError ; end
+  class NetworkError < StandardError
+    def initialize(status, body)
+      super("Error. HTTP status: #{status}. Response body: #{msg}")
+    end
+  end
 
-  class EndpointNotImplemented < Error ; end
+  class UnauthorizedRequest < NetworkError; end
+  class NotFound < NetworkError; end
+  class ApiNotResponding < NetworkError; end
+  class InvalidRequest < NetworkError; end
+  class UnexpectedResponse < NetworkError; end
 
-  class UnauthorizedRequest < Error ; end
-  class NotFound < Error ; end
-  class ApiNotResponding < Error ; end
-  class InvalidRequest < Error ; end
-  class UnexpectedResponse < Error ; end
+  class EndpointNotImplemented < StandardError
+    def initialize(endpoint)
+      super("Unrecognized endpoint: #{endpoint}")
+    end
+  end
 
 end
