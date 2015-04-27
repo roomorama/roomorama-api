@@ -54,7 +54,7 @@ module RoomoramaApi
       end_point = END_POINTS[attribute]
       api_version = @config.api_version
       api_version = "v2.0" if END_POINTS_V2_0.has_key? attribute
-      raise EndpointNotImplemented unless end_point
+      raise(EndpointNotImplemented, end_point) unless end_point
       url = "#{@config.base_url}/#{api_version}/#{end_point}.json"
       hash ? (url % hash) : url
     end
@@ -84,7 +84,7 @@ module RoomoramaApi
 
     [:get, :post, :put, :delete].each do |http_method|
       define_method("auth_#{http_method}") { |url, attrs = {}| auth_request(http_method, url, attrs) }
-      define_method(http_method) { |url| raise EndpointNotImplemented }
+      define_method(http_method) { |url| raise EndpointNotImplemented, url }
     end
 
     def auth_request(method, url, attrs)
@@ -100,15 +100,15 @@ module RoomoramaApi
     def prepare_response(response)
       case response.status
       when 200..206 then parse_successful_response(response)
-      when 401 then raise UnauthorizedRequest
-      when 404 then raise NotFound
+      when 401 then raise UnauthorizedRequest.new(response.status, parse_response(response))
+      when 404 then raise NotFound.new(response.status, parse_response(response))
       when 422
         error_response = parse_invalid_response(response)
         error_response = error_response.presence || 'Received empty response from API'
-        raise InvalidRequest, error_response
-      when 500..505 then raise ApiNotResponding
+        raise InvalidRequest(response.status, error_response)
+      when 500..505 then raise ApiNotResponding.new(response.status, parse_response(response))
       else
-        raise UnexpectedResponse
+        raise UnexpectedResponse.new(response.status, parse_response(response))
       end
     end
 
