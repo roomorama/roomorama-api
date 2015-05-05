@@ -105,7 +105,7 @@ module RoomoramaApi
       when 422
         error_response = parse_invalid_response(response)
         error_response = error_response.presence || 'Received empty response from API'
-        raise InvalidRequest(response.status, error_response)
+        raise InvalidRequest.new(response.status, error_response)
       when 500..505 then raise ApiNotResponding.new(response.status, parse_response(response))
       else
         raise UnexpectedResponse.new(response.status, parse_response(response))
