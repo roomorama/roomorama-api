@@ -14,7 +14,7 @@ module RoomoramaApi
 
   class NetworkError < StandardError
     def initialize(status, body)
-      super("Error. HTTP status: #{status}. Response body: #{msg}")
+      super("Error. HTTP status: #{status}. Response body: #{body}")
     end
   end
 
