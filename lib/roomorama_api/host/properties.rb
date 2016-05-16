@@ -472,10 +472,12 @@ module RoomoramaApi
       #     "instant_booking"=>true
       #   }
       def set_instantly_available(property_hash)
-        property_hash.merge(api_version: "v2.0")
         instantly_available = property_hash.fetch(:instantly_available)
-        url = host_instantly_available_url(property_hash)
-        instantly_available ? auth_post(url) : auth_delete(url)
+        url = host_property_url(property_hash)
+        data = property_hash
+        data = data.merge(instant_booking: !!instantly_available)
+
+        auth_put(url, data)
       end
 
       # Returns the units for a specified room
