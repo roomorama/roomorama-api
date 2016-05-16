@@ -1,4 +1,4 @@
-require "roomorama_api/version"
+require_relative "./lib/roomorama_api/version"
 
 Gem::Specification.new do |s|
   s.name  = 'roomorama_api'
