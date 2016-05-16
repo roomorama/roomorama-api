@@ -1,6 +1,8 @@
+require "roomorama_api/version"
+
 Gem::Specification.new do |s|
   s.name  = 'roomorama_api'
-  s.version = '0.0.4'
+  s.version = RoomoramaApi::VERSION
   s.date    = '2014-11-02'
   s.summary = "Roomorama Api Client - Ruby wrapper library to consume Roomorama's API 1.0"
   s.description = "Roomorama Api Client - Ruby wrapper library to consume Roomorama's API 1.0"
