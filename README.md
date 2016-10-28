@@ -1,6 +1,8 @@
-# Roomorama API
+# [Deprecated] Roomorama API
 
-Ruby wrapper library to consume Roomorama's [API 1.0](https://www.roomorama.com/api/v1_0)
+Ruby wrapper library to consume Roomorama's [API 1.0](https://www.roomorama.com/api)
+
+This is deprecated in favour of our new API powered by our new business BridgeRentals.com.
 
 ## Usage
 
