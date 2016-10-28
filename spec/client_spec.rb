@@ -36,10 +36,8 @@ describe "Roomorama API" do
     end
 
     describe ".configuration" do
-      let(:client){ RoomoramaApi::Client }
-      it "responds to configuration" do
-        expect( client ).to respond_to(:configuration)
-      end
+      subject { RoomoramaApi::Client }
+      it { is_expected.to respond_to(:configuration) }
     end
 
     describe ".setup" do
